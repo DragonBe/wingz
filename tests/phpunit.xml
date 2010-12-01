@@ -1,0 +1,18 @@
+<phpunit bootstrap="./TestHelper.php" colors="true">
+    <!-- Version: $Id: phpunit.xml 844 2010-09-23 13:34:35Z andries $ -->
+    <testsuite name="Unit test suite">
+        <directory>./</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../application/</directory>
+        </whitelist>
+    </filter>
+
+    <!--logging>
+        <log type="testdox-html" target="./log/testdox.html"/>
+        <log type="coverage-html" target="./log/report" charset="UTF-8"
+             yui="true" highlight="true"/>
+    </logging-->
+</phpunit>
