@@ -15,8 +15,43 @@
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
-      <modulesDirectory enabled="false"/>
+      <modelsDirectory>
+        <modelFile modelName="User"/>
+        <modelFile modelName="Role"/>
+        <modelFile modelName="Abstract"/>
+        <modelFile modelName="Interface"/>
+      </modelsDirectory>
+      <modulesDirectory>
+        <moduleDirectory moduleName="auth">
+          <apisDirectory enabled="false"/>
+          <configsDirectory enabled="false"/>
+          <controllersDirectory>
+            <controllerFile controllerName="Index">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="login"/>
+              <actionMethod actionName="logout"/>
+            </controllerFile>
+          </controllersDirectory>
+          <formsDirectory enabled="false"/>
+          <layoutsDirectory enabled="false"/>
+          <modelsDirectory/>
+          <viewsDirectory>
+            <viewScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="login"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="logout"/>
+              </viewControllerScriptsDirectory>
+            </viewScriptsDirectory>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+      </modulesDirectory>
       <viewsDirectory>
         <viewScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
@@ -58,6 +93,9 @@
       <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
       <testApplicationDirectory>
         <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile filesystemName="IndexControllerTest.php"/>
+        </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
         <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
