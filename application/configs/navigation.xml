@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <nav>
+        <home>
+            <label>Home</label>
+            <module>default</module>
+            <controller>index</controller>
+            <action>index</action>
+        </home><tour>
+            <label>Take the tour</label>
+            <module>default</module>
+            <controller>tour</controller>
+            <action>index</action>
+        </tour><faq>
+            <label>FAQ</label>
+            <module>default</module>
+            <controller>faq</controller>
+            <action>index</action>
+        </faq>
+    </nav>
+</config>
