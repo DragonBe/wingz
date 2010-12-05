@@ -23,8 +23,8 @@ body { text-align: center; margin: 0; }
 
 #center {}
 
-#footer { background: #12b; color: #fff; text-align: center; }
+#footer { background: #12b; color: #fff; text-align: center; padding: 25px 15px; }
 #footer a { color: #fff; }
 #footer a:hover { color: #ff0; }
 
-.clear { clear: both; font-size: 1pt; }
+.clear { clear: both; font-size: 0; }
