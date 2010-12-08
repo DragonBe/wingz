@@ -10,20 +10,20 @@ body { text-align: center; margin: 0; }
 #header a { color: #000; text-decoration: none; padding: 5px 15px;}
 #header #navigation {}
 #header #navigation a { font-weight: bold; }
-#header #navigation a:hover { background: #12b; color: #fff; }
+#header #navigation a:hover { background: #00c4ff; color: #fff; }
 #header #navigation ul { list-style: none; float: right; margin: 0; padding: 0; }
 #header #navigation ul li { float: left; margin: 5px; }
 #header #logo { float: left; width: 160px; height: 80px; background: #ccc; text-align: left; }
 #header #logo a { padding: 0; margin: 0; }
 
-#promo { background: #12b; color: #fff; height: 180px; }
+#promo { background: #00c4ff; color: #fff; height: 180px; }
 #promo #teaser { padding: 25px 0 0 75px; }
 #promo #teaser h1 { margin: 0; }
 #promo #teaser p { margin: 0; }
 
 #center {}
 
-#footer { background: #12b; color: #fff; text-align: center; padding: 25px 15px; }
+#footer { background: #00c4ff; color: #fff; text-align: center; padding: 25px 15px; }
 #footer a { color: #fff; }
 #footer a:hover { color: #ff0; }
 
