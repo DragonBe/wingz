@@ -6,6 +6,14 @@ class Application_Model_User extends Application_Model_Abstract
      * @var 	int The ID of this User
      */
     protected $_id;
+	/**
+	 * @var		string The first name of this User
+	 */
+	protected $_firstName;
+	/**
+	 * @var		string The last name of this User
+	 */
+	protected $_lastName;
     /**
      * @var 	string The username of this User
      */
@@ -58,6 +66,46 @@ class Application_Model_User extends Application_Model_Abstract
     {
         return $this->_id;
     }
+	/**
+	 * Sets the first name for this User
+	 *
+	 * @params	string $firstName
+	 * @return	Application_Model_User
+	 */
+	public function setFirstName($firstName)
+	{
+		$this->_firstName = (string) $firstName;
+		return $this;
+	}
+	/**
+	 * Retrieves the first name from this User
+	 *
+	 * @return	string
+	 */
+	public function getFirstName()
+	{
+		return $this->_firstName;
+	}
+	/**
+	 * Sets the last name for this User
+	 *
+	 * @param	string $lastName
+	 * @return	Application_Model_User
+	 */
+	public function setLastName($lastName)
+	{
+		$this->_lastName = (string) $lastName;
+		return $this;
+	}
+	/**
+	 * Retrieves the last name from this User
+	 *
+	 * @return	string
+	 */
+	public function getLastName()
+	{
+		return $this->_lastName;
+	}
     /**
      * Sets the username for this User
      * 
@@ -118,6 +166,13 @@ class Application_Model_User extends Application_Model_Abstract
     {
         return $this->_email;
     }
+	public function getMapper()
+	{
+		if (null === $this->_mapper) {
+			$this->setMapper('Application_Model_Mapper_User');
+		}
+		return $this;
+	}
     /**
      * Sets the role for this User
      * 
@@ -156,6 +211,8 @@ class Application_Model_User extends Application_Model_Abstract
             $row = new ArrayObject($row, ArrayObject::ARRAY_AS_PROPS);
         }
         if (isset ($row->id)) { $this->setId($row->id); }
+		if (isset ($row->firstname)) { $this->setFirstName($row->firstname); }
+		if (isset ($row->lastname)) { $this->setLastName($row->lastname); }
         if (isset ($row->username)) { $this->setUsername($row->username); }
         if (isset ($row->password)) { $this->setPassword($row->password); }
         if (isset ($row->email)) { $this->setEmail($row->email); }
@@ -171,6 +228,8 @@ class Application_Model_User extends Application_Model_Abstract
     {
         return array (
             'id' => $this->getId(),
+			'firstname' => $this->getFirstName(),
+			'lastname' => $this->getLastName(),
             'username' => $this->getUsername(),
             'password' => $this->getPassword(),
             'email' => $this->getEmail(),

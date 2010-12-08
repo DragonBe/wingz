@@ -18,6 +18,10 @@
         <controllerFile controllerName="Faq">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Oauth">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="facebook"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
@@ -72,6 +76,12 @@
           <viewControllerScriptsDirectory forControllerName="Faq">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Oauth">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Oauth">
+            <viewScriptFile forActionName="facebook"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -109,6 +119,7 @@
           <testApplicationControllerFile filesystemName="IndexControllerTest.php"/>
           <testApplicationControllerFile filesystemName="TourControllerTest.php"/>
           <testApplicationControllerFile filesystemName="FaqControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="OauthControllerTest.php"/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
