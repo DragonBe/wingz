@@ -1,0 +1,15 @@
+; API configuration
+; =================
+
+; This configuration file is there for public API purposes and can be added
+; if needed.
+
+; Facebook API
+; ------------
+; You can get an API key for facebook at 
+; http://www.facebook.com/developers/#!/developers/createapp.php 
+facebook.clientId = 
+facebook.secret = 
+facebook.key = 
+facebook.redirect_uri = 
+facebook.display = 

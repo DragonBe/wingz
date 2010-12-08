@@ -16,6 +16,8 @@ class Application_Model_UserTest extends PHPUnit_Framework_TestCase
     public function testModelIsEmpty()
     {
         $this->assertNull($this->_user->getId());
+		$this->assertNull($this->_user->getFirstName());
+		$this->assertNull($this->_user->getLastName());
         $this->assertNull($this->_user->getUsername());
         $this->assertNull($this->_user->getPassword());
         $this->assertNull($this->_user->getEmail());
@@ -25,6 +27,8 @@ class Application_Model_UserTest extends PHPUnit_Framework_TestCase
         return array (
             array (array (
                 'id'        => 1,
+				'firstname' => 'Test',
+				'lastname'  => 'User',
                 'username'  => 'testuser',
                 'password'  => 'verysecret',
                 'email'		=> 'test@example.com',
@@ -41,6 +45,8 @@ class Application_Model_UserTest extends PHPUnit_Framework_TestCase
     public function testUserContainsCorrectData($data)
     {
         $this->_user->setId($data['id'])
+		            ->setFirstName($data['firstname'])
+					->setLastName($data['lastname'])
                     ->setUsername($data['username'])
                     ->setPassword($data['password'])
                     ->setEmail($data['email'])

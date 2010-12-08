@@ -1,1 +1,32 @@
+<?php $this->jQuery()->enable()
+                     ->uiEnable()
+                     ->addStylesheet('http://jqueryui.com/themes/base/jquery.ui.all.css')
+                     ->addOnLoad(<<<EOS
+	jQuery('#facebookOpen').click(function () {
+		jQuery('#facebookAuth').dialog('open');
+		return false;
+	});
+EOS
+)?>
+
+
 <p>This is the view for the main index, please edit.</p>
+
+<?php echo $this->facebookLike();?>
+
+
+<?php echo $this->dialogContainer('facebookAuth', "<iframe src=\"{$this->url(array (
+            'controller' => 'oauth',
+            'action' => 'facebook',
+            'format' => 'html',
+    ), null, true)}\" scrolling=\"no\" frameborder=\"0\"
+        style=\"border:none; width:450px; height:250px\"></iframe>",
+    array (
+        'autoOpen' => false,
+        'modal' => true,
+        'width' => 550,
+        'height' => 350,
+        'draggable' => false,
+        'resizable' => false,
+    )) ;?>
+<button id="facebookOpen">Open</button>
