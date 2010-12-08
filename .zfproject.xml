@@ -21,6 +21,7 @@
         <controllerFile controllerName="Oauth">
           <actionMethod actionName="index"/>
           <actionMethod actionName="facebook"/>
+          <actionMethod actionName="twitter"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -81,6 +82,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Oauth">
             <viewScriptFile forActionName="facebook"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Oauth">
+            <viewScriptFile forActionName="twitter"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
