@@ -47,6 +47,11 @@ class OauthController extends Zend_Controller_Action
 		// create an oauth consumer
         $consumer = new Zend_Oauth_Consumer($this->_config->twitter);
 
+		// let's see if the user is already known to the system
+		if (false !== ($tat = $_COOKIE['tat'])) {
+			return $this->_helper->redirector('index');
+		}
+
 		// check if there's a valid token returned
 		if (!empty ($_GET) && isset ($this->_session->twitter_request_token)) {
 			$token = $consumer->getAccessToken($_GET,
