@@ -10,7 +10,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $this->_redirect($this->view->baseUrl('/index.html'));
     }
 
 
