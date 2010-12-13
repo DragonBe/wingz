@@ -1,7 +1,7 @@
 <?php
 class Wingz_Service_Facebook extends Zend_Http_Client
 {
-    const OAUTH_BASE_URI = 'https://graph.facebook.com/oauth/authorize';
+    const OAUTH_BASE_URI = 'https://graph.facebook.com/oauth';
     
     const DIALOG_PAGE = 'page';
     
@@ -12,6 +12,8 @@ class Wingz_Service_Facebook extends Zend_Http_Client
     const DIALOG_TOUCH = 'touch';
     
     protected $_clientId;
+    
+    protected $_key;
     
     protected $_secret;
     
@@ -32,8 +34,9 @@ class Wingz_Service_Facebook extends Zend_Http_Client
     {
         if (null === $options) $options = array ();
         if ($options instanceof Zend_Config) $options = $options->toArray();
-        if (isset ($options['clientId'])) $this->setClientId($options['clientId']);
-        if (isset ($options['secret'])) $this->setSecret($options['secret']);
+        if (isset ($options['client_id'])) $this->setClientId($options['client_id']);
+        if (isset ($options['consumerKey'])) $this->setKey($options['consumerKey']);
+        if (isset ($options['consumerSecret'])) $this->setSecret($options['consumerSecret']);
         if (isset ($options['redirect_uri'])) $this->setRedirectUri($options['redirect_uri']);
         if (isset ($options['access_token'])) $this->setAccessToken($options['access_token']);
         if (isset ($options['display'])) $this->setDisplay($options['display']);
@@ -47,6 +50,15 @@ class Wingz_Service_Facebook extends Zend_Http_Client
     public function getClientId()
     {
         return $this->_clientId;
+    }
+    public function setKey($key)
+    {
+        $this->_key = (string) $key;
+        return $this;
+    }
+    public function getKey()
+    {
+        return $this->_key;
     }
     public function setSecret($secret)
     {
@@ -106,11 +118,12 @@ class Wingz_Service_Facebook extends Zend_Http_Client
             throw new Wingz_Service_Facebook_Exception(
                 'Required option redirect_uri is missing');
         }
-        $this->setUri(self::OAUTH_BASE_URI);
+        $this->setUri(self::OAUTH_BASE_URI . '/authorize');
         $this->setParameterGet(array (
         	'client_id'    => $this->getClientId(),
             'redirect_uri' => $this->getRedirectUri(),
             'display'      => $this->getDisplay(),
+            'language'     => 'en_US',
         ));
         $this->setHeaders(array ('Accept-Language' => 'en_US'));
         $response = $this->request();
