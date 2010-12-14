@@ -24,12 +24,11 @@ class OauthController extends Zend_Controller_Action
     public function indexAction()
     {
 		$username = 'Anonymous';
-		if (isset ($_COOKIE['tat']) && $tat = $_COOKIE['tat']) {
-			$token = unserialize($tat);
-			$username = $token->getParam('screen_name');
-			setcookie('tat', $tat, 30758400, '/', $_SERVER['HTTP_HOST'], false);
-		}
+		$token = null;
+		$username = Application_Service_Oauth::getUsername('twitter');
+		$username = Application_Service_Oauth::getUsername('linkedin');
         echo 'hoi ' . $username;
+        Zend_Debug::dump($token);
     }
 
     public function facebookAction()
@@ -64,7 +63,11 @@ class OauthController extends Zend_Controller_Action
 
     public function twitterAction()
     {
-		// create an oauth consumer
+		$oauth = new Application_Service_Oauth();
+		$result = $oauth->authenticate('twitter', $this->getRequest(), $this->_session);
+		Zend_Debug::dump($result);
+		/*
+        // create an oauth consumer
         $consumer = new Zend_Oauth_Consumer($this->_config->twitter);
 
 		// let's see if the user is already known to the system
@@ -72,9 +75,6 @@ class OauthController extends Zend_Controller_Action
 			return $this->_helper->redirector('index');
 		}
 
-//		Zend_Debug::dump($this->getRequest()->getParams());
-//		Zend_Debug::dump($this->_session->twitter_request_token);
-//		die;
 		
 		// check if there's a valid token returned
 		if (!empty ($_GET) && isset ($this->_session->twitter_request_token)) {
@@ -83,7 +83,7 @@ class OauthController extends Zend_Controller_Action
 			unset ($this->_session->twitter_request_token);
 			$tat = serialize($token);
 			$this->_session->twitter_access_token = $tat;
-			setcookie('tat', $tat, 30758400, '/', $_SERVER['HTTP_HOST'], false);
+			setcookie('tat', $tat, 30758400, '/');
 			return $this->_helper->redirector('index');
 		} else {
 			// retrieve the token and store it in a session
@@ -93,6 +93,7 @@ class OauthController extends Zend_Controller_Action
 			// redirect to twitter to allow/reject your app
 			$consumer->redirect();
 		}
+		*/
     }
     
     public function linkedinAction()
@@ -112,7 +113,7 @@ class OauthController extends Zend_Controller_Action
 			unset ($this->_session->linkedin_request_token);
 			$lat = serialize($token);
 			$this->_session->linkedin_access_token = $lat;
-			setcookie('lat', $lat, 30758400, '/', $_SERVER['HTTP_HOST'], false);
+			setcookie('lat', $lat, 30758400);
 			return $this->_helper->redirector('index');
 		} else {
 			// retrieve the token and store it in a session
