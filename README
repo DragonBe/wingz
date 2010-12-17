@@ -2,3 +2,14 @@ Wingz
 =====
 
 This is a social mashup using joindin for retrieving conference information and using social platforms like twitter, facebook, linkedin, gowalla and foursquare to let the world know which conference you're going to, what talk you're attending and what feedback you've given to the speaker.
+
+Website
+=======
+Wingz is running on http://www.wingz.cc which will redirect you to the
+proper http://wingz.cc.
+
+Bug reporting
+=============
+
+On http://bugs.wingz.cc you can follow up on the roadmap and report found
+issues
