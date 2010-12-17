@@ -1,11 +1,12 @@
-
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} ^www.wingz.cc$ [NC]
-RewriteRule ^(.*)$ http://wingz.cc/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} !^wingz\.cc$ [NC]
+RewriteCond %{HTTP_HOST} !^$
+RewriteRule ^(.*) http://wingz.cc/$1 [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
+
 RewriteRule ^.*$ index.php [NC,L]
