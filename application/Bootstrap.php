@@ -10,6 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = $this->getPluginResource('view')->getView();
         $view->doctype('XHTML1_STRICT');
         $view->headTitle(sprintf('%s v%s', $config->app->name, $config->app->version));
+        $view->headTitle()->setSeparator(': ');
         $view->headLink()->appendStylesheet($view->baseUrl('/css/style.css'));
         $view->headMeta()->setHttpEquiv('text/html; Charset=UTF-8', 'Content-Type');
         // Add it to the ViewRenderer

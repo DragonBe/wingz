@@ -3,13 +3,44 @@
 
 ; This configuration file is there for public API purposes and can be added
 ; if needed.
+; Joind.in account
+; ----------------
+; Joind in will be the most important feature of this app for collecting
+; information and updatings statusses.
+; So, if you haven't already done so, create an account on http://joind.in
+joindin.username = 
+joindin.password = 
 
 ; Facebook API
 ; ------------
 ; You can get an API key for facebook at 
-; http://www.facebook.com/developers/#!/developers/createapp.php 
-facebook.clientId = 
-facebook.secret = 
-facebook.key = 
-facebook.redirect_uri = 
-facebook.display = 
+; http://www.facebook.com/developers/#!/developers/createapp.php
+facebook.siteUrl = https://graph.facebook.com/oauth
+facebook.requestTokenUrl = https://graph.facebook.com/oauth/access_token
+facebook.accessTokenUrl = https://graph.facebook.com/oauth/access_token
+facebook.authorizeUrl = https://graph.facebook.com/oauth/authorize
+
+facebook.client_id = 
+facebook.consumerKey = 
+facebook.consumerSecret = 
+facebook.redirect_uri = http://wingz.cc/oauth
+facebook.display = popup
+; Twitter API
+; -----------
+; You can get an API key for twitter at
+; http://dev.twitter.com/apps/new
+twitter.callbackUrl = http://wingz.cc/oauth/twitter
+twitter.siteUrl = http://twitter.com/oauth
+twitter.consumerKey = 
+twitter.consumerSecret = 
+; LinkedIn API
+; You can get an API key for LinkedIn at
+;
+linkedin.siteUrl = https://api.linkedin.com/uas/oauth
+linkedin.requestTokenUrl = https://api.linkedin.com/uas/oauth/requestToken
+linkedin.accessTokenUrl = https://api.linkedin.com/uas/oauth/accessToken
+linkedin.authorizeUrl = https://api.linkedin.com/uas/oauth/authorize
+
+linkedin.callbackUrl = http://wingz.cc/oauth/linkedin
+linkedin.consumerKey = 
+linkedin.consumerSecret = 

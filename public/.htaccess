@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} !^wingz\.cc$ [NC]
+RewriteCond %{HTTP_HOST} ^www\.wingz\.cc$ [NC]
 RewriteCond %{HTTP_HOST} !^$
 RewriteRule ^(.*) http://wingz.cc/$1 [R=301,L]
 

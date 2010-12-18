@@ -1,32 +1,7 @@
-<?php $this->jQuery()->enable()
-                     ->uiEnable()
-                     ->addStylesheet('http://jqueryui.com/themes/base/jquery.ui.all.css')
-                     ->addOnLoad(<<<EOS
-	jQuery('#facebookOpen').click(function () {
-		jQuery('#facebookAuth').dialog('open');
-		return false;
-	});
-EOS
-)?>
-
-
-<p>This is the view for the main index, please edit.</p>
-
-<?php echo $this->facebookLike();?>
-
-
-<?php echo $this->dialogContainer('facebookAuth', "<iframe src=\"{$this->url(array (
-            'controller' => 'oauth',
-            'action' => 'facebook',
-            'format' => 'html',
-    ), null, true)}\" scrolling=\"no\" frameborder=\"0\"
-        style=\"border:none; width:450px; height:250px\"></iframe>",
-    array (
-        'autoOpen' => false,
-        'modal' => true,
-        'width' => 550,
-        'height' => 350,
-        'draggable' => false,
-        'resizable' => false,
-    )) ;?>
-<button id="facebookOpen">Open</button>
+<?php $this->headTitle($this->translate('Overview of upcoming events'))?>
+<h1><?php echo $this->translate('Overview of upcoming events') ?></h1>
+<?php if (!empty ($this->events)): ?>
+<?php echo $this->partialLoop('index/partials/events-item.phtml', null, $this->events) ?>
+<?php else: ?>
+<p><?php echo $this->translate('No events received') ?>
+<?php endif;?>

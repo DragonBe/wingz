@@ -5,12 +5,19 @@ class IndexController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $cs = $this->_helper->contextSwitch();
+        $cs->setActionContext('index', array ('xml', 'json'))
+           ->setAutoDisableLayout(true)
+           ->initContext();
     }
 
     public function indexAction()
     {
-        $this->_redirect($this->view->baseUrl('/index.html'));
+        $joindin = new Application_Service_Joindin();
+        $events = $joindin->getEvents();
+        $this->view->assign(array (
+            'events' => $events,
+        ));
     }
 
 
