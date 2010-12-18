@@ -16,6 +16,9 @@
             <module>default</module>
             <controller>faq</controller>
             <action>index</action>
-        </faq>
+        </faq><source>
+            <label>Source code</label>
+            <uri>http://github.com/DragonBe/wingz</uri>
+        </source>
     </nav>
 </config>
