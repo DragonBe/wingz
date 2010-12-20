@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.eventBox {}
+.eventTitle { font-weight: bold; font-size: 105%; }
+.eventAbstract { text-align: right; }
+.eventDescription { text-align: left; float: right; width: 910px; }
+.eventDescription p { margin: 0 5px; }
+.eventImage { float: left; width: 90px; height: 90px; }
+.eventIcon { width: 84px; height: 84px; border: 2px solid #000; }

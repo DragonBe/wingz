@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <nav>
-        <home>
+        <!--home>
             <label>Home</label>
+            <title>Return to our homepage</title>
             <module>default</module>
             <controller>index</controller>
             <action>index</action>
-        </home><tour>
+        </home--><tour>
             <label>Take the tour</label>
+            <title>Learn what wingz is all about</title>
             <module>default</module>
             <controller>tour</controller>
             <action>index</action>
         </tour><faq>
             <label>FAQ</label>
+            <title>Before asking questions, read our faq first</title>
             <module>default</module>
             <controller>faq</controller>
             <action>index</action>
         </faq><source>
             <label>Source code</label>
+            <title>Find this source code on GitHub</title>
             <uri>http://github.com/DragonBe/wingz</uri>
         </source>
     </nav>
