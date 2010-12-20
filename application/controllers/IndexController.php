@@ -14,7 +14,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $joindin = new Application_Service_Joindin();
-        $events = $joindin->getEvents();
+        $events = $joindin->getEvents(3);
         $this->view->assign(array (
             'events' => $events,
         ));
