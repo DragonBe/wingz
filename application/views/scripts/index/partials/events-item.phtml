@@ -1,4 +1,23 @@
 
-<strong><?php echo $this->escape($this->event_name) ?></strong><br/>
-<p><?php echo nl2br($this->escape($this->event_desc)) ?></p>
-<br/>
+<div class="eventBox">
+<h2 class="eventTitle"><?php echo $this->escape($this->event_name) ?></h2>
+    <div class="eventAbstract">
+        <div class="eventDescription">
+            <?php if (false !== strpos(nl2br($this->escape($this->event_desc)), '<br />')):?>
+            <p><?php echo substr(nl2br($this->escape($this->event_desc)), 0, strpos(nl2br($this->escape($this->event_desc)), '<br />')) ?></p>
+            <?php else: ?>
+            <p><?php echo $this->escape($this->event_desc) ?></p>
+            <?php endif; ?>
+        </div>
+        <span class="eventImage">
+            <?php if (!empty ($this->event_icon)): ?>
+            <img src="http://joind.in/inc/img/event_icons/<?php echo $this->escape($this->event_icon) ?>"
+            width="84" height="84" alt="Event icon" class="eventIcon"/>
+            <?php else: ?>
+            <img src="http://joind.in/inc/img/event_icons/none.gif"
+            width="84" height="84" alt="Event icon" class="eventIcon"/>
+            <?php endif;?>
+        </span>
+    </div>
+    <div class="clear">&nbsp;</div>
+</div>

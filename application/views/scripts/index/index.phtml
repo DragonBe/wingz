@@ -1,4 +1,5 @@
 <?php $this->headTitle($this->translate('Overview of upcoming events'))?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/css/events.css')) ?>
 <h1><?php echo $this->translate('Overview of upcoming events') ?></h1>
 <?php if (!empty ($this->events)): ?>
 <?php echo $this->partialLoop('index/partials/events-item.phtml', null, $this->events) ?>
