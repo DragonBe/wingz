@@ -4,9 +4,13 @@ class Wingz_Service_Joindin_Model_Events implements Countable, SeekableIterator
     protected $_idx = 0;
     protected $_count = 0;
     protected $_events = array ();
+    protected $_itemCount = 0;
     
-    public function __construct($params = null)
+    public function __construct($params = null, $itemCount = 0)
     {
+        if (0 < (int) $itemCount) {
+            $this->_itemCount = (int) $itemCount;
+        }
         if (null !== $params) {
             $this->populate($params);
         }
@@ -30,6 +34,7 @@ class Wingz_Service_Joindin_Model_Events implements Countable, SeekableIterator
             foreach ($data->item as $item) {
                 $event = new Wingz_Service_Joindin_Model_Event($item);
                 $this->addEvent($event);
+                if (0 < $this->_itemCount && $this->_itemCount <= $this->count()) break;
             }
         }
     }
