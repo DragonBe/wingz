@@ -9,6 +9,8 @@ class IndexController extends Zend_Controller_Action
         $cs->setActionContext('index', array ('xml', 'json'))
            ->setAutoDisableLayout(true)
            ->initContext();
+           
+        $this->view->googleTracker('UA-352655-7');
     }
 
     public function indexAction()

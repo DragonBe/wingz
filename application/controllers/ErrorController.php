@@ -3,6 +3,11 @@
 class ErrorController extends Zend_Controller_Action
 {
 
+    public function init()
+    {
+        $this->view->googleTracker('UA-352655-7');
+    }
+    
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');

@@ -19,6 +19,8 @@ class OauthController extends Zend_Controller_Action
                               ->setAutoJsonSerialization(true)
                               ->addActionContext('facebook', array ('html'))
                               ->initContext();
+                              
+        $this->view->googleTracker('UA-352655-7');
     }
 
     public function indexAction()
