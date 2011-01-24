@@ -5,7 +5,7 @@ class TourController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $this->view->googleTracker('UA-352655-7');
     }
 
     public function indexAction()
