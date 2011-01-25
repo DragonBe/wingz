@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wingz" default="prepare">
+    <target name="version-bugfix">
+        <version releasetype="Bugfix" file="version.txt" property="version.number"/>
+    </target>
+    <target name="version-minor">
+		<version releasetype="Minor" file="version.txt" property="version.number"/>
+    </target>
+    <target name="version-major">
+        <version releasetype="Major" file="version.txt" property="version.number"/>
+    </target>
+	<target name="prepare">
+	  <echo msg="Building tool"/>
+	  <echo msg="Choose between phpunit, deploy-cc (linux), deploy-be (iis7) or deploy-ca (azure)"/>
+	</target>
+	<target name="phpunit">
+	  <echo msg="Executing unit tests"/>
+	</target>
+	<target name="phpdoc">
+	  <echo msg="Writing documentation"/>
+	</target>
+	<target name="deploy-dev">
+	  <echo msg="Deploying to DEVELOPMENT"/>
+	</target>
+	<target name="deploy-test">
+	  <echo msg="Deploying to TEST"/>
+	</target>
+	<target name="deploy-prod">
+	  <echo msg="Deploying to PRODUCTION"/>
+	</target>
+	<target name="deploy-cc" depends="version-bugfix">
+	  <echo msg="Deploying wingz-${version.number} to wingz.cc"/>
+	  <exec command="/usr/bin/rsync -ruq . michelangelo@wingz.cc:/srv/www/www.wingz.cc"
+	        dir="." />
+	</target>
+
+    <target name="deploy-be" depends="version-bugfix">
+	  <ftpdeploy 
+		  host="win2008php" 
+		  port="21" 
+		  username="Michelangelo van Dam"
+		  password="p@y2pl@y"
+		  dir="/" 
+		  mode="binary">
+		  <fileset dir=".">
+		    <include name="application/**"/>
+		    <include name="public/**"/>
+		    <include name="library/**"/>
+		    <include name="index.php"/>
+		    <include name="maintenance.html"/>
+		    <include name="web.config"/>
+		  </fileset>
+		</ftpdeploy>
+	</target>
+
+	<target name="build">
+	  <echo msg="Building tool"/>
+	</target>
+</project>
+
