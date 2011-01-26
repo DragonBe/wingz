@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wingz" default="prepare">
+
+	<!-- define your environments here -->
+    <property name="linux-dev" value="wingz.linux" override="false"/>
+    <property name="linux-prod" value="wingz.cc" override="false"/>
+    <property name="win-dev" value="wingz.win" override="false"/>
+    <property name="win-prod" value="wingz.be" override="false"/>
+    <property name="azure-dev" value="wingz.cloudapp.net" override="false"/>
+    <property name="azure-prod" value="wingz.ca" override="false"/>
+
+	<!-- define version increases here -->
+    <target name="version-bugfix">
+        <version releasetype="Bugfix" file="version.txt" property="version.number"/>
+    </target>
+    <target name="version-minor">
+		<version releasetype="Minor" file="version.txt" property="version.number"/>
+    </target>
+    <target name="version-major">
+        <version releasetype="Major" file="version.txt" property="version.number"/>
+    </target>
+	<target name="prepare">
+	  <echo msg="Building tool"/>
+	  <echo msg="Choose between phpunit, deploy-cc (linux), deploy-be (iis7) or deploy-ca (azure)"/>
+	</target>
+	<target name="phpunit">
+	  <echo msg="Executing unit tests"/>
+	</target>
+	<target name="phpdoc">
+	  <echo msg="Writing documentation"/>
+	</target>
+
+	<!-- define deployment targets here -->
+	<target name="deploy-linux" depends="version-bugfix">
+	  <echo msg="Deploying ${phing.project.name}-${version.number} to ${linux-dev}"/>
+	</target>
+
+	<target name="deploy-cc" depends="version-bugfix">
+	  <echo msg="Deploying ${phing.project.name}-${version.number} to ${linux-prod}"/>
+	  <exec command="/usr/bin/rsync -ruq . michelangelo@wingz.cc:/srv/www/www.wingz.cc"
+	        dir="." />
+	</target>
+
+    <target name="deploy-win" depends="version-bugfix">
+      <echo msg="Deploying ${phing.project.name}-${version.number} to ${win-dev}"/>
+	  <ftpdeploy 
+		  host="ftp.host.tld" 
+		  port="21" 
+		  username="username"
+		  password="password"
+		  dir="/" 
+		  mode="binary"
+		  clearfirst="false">
+		  <fileset dir=".">
+		    <include name="application/**"/>
+		    <include name="docs/**"/>
+		    <include name="public/**"/>
+		    <include name="library/**"/>
+		    <include name="index.php"/>
+		    <include name="maintenance.html"/>
+		  </fileset>
+		</ftpdeploy>
+	</target>
+
+    <target name="deploy-be" depends="version-bugfix">
+      <echo msg="Deploying ${phing.project.name}-${version.number} to ${win-prod}"/>
+	  <ftpdeploy 
+		  host="ftp.host.tld" 
+		  port="21" 
+		  username="username"
+		  password="password"
+		  dir="/" 
+		  mode="binary"
+		  clearfirst="false">
+		  <fileset dir=".">
+		    <include name="application/**"/>
+		    <include name="docs/**"/>
+		    <include name="public/**"/>
+		    <include name="library/**"/>
+		    <include name="index.php"/>
+		    <include name="maintenance.html"/>
+		  </fileset>
+		</ftpdeploy>
+	</target>
+
+	<target name="build">
+	  <echo msg="Building tool"/>
+	</target>
+</project>
+
