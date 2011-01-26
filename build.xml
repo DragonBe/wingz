@@ -37,10 +37,10 @@
     <target name="deploy-be" depends="version-bugfix">
       <echo msg="Deploying wingz-${version.number} to wingz.be (IIS7)"/>
 	  <ftpdeploy 
-		  host="win2008php" 
+		  host="wingz.be" 
 		  port="21" 
-		  username="Michelangelo van Dam"
-		  password="p@y2pl@y"
+		  username="michelangelo"
+		  password="XXXXXX"
 		  dir="/" 
 		  mode="binary"
 		  clearfirst="false">
