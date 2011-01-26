@@ -29,26 +29,28 @@
 	  <echo msg="Deploying to PRODUCTION"/>
 	</target>
 	<target name="deploy-cc" depends="version-bugfix">
-	  <echo msg="Deploying wingz-${version.number} to wingz.cc"/>
+	  <echo msg="Deploying wingz-${version.number} to wingz.cc (Apache)"/>
 	  <exec command="/usr/bin/rsync -ruq . michelangelo@wingz.cc:/srv/www/www.wingz.cc"
 	        dir="." />
 	</target>
 
     <target name="deploy-be" depends="version-bugfix">
+      <echo msg="Deploying wingz-${version.number} to wingz.be (IIS7)"/>
 	  <ftpdeploy 
 		  host="win2008php" 
 		  port="21" 
 		  username="Michelangelo van Dam"
 		  password="p@y2pl@y"
 		  dir="/" 
-		  mode="binary">
+		  mode="binary"
+		  clearfirst="false">
 		  <fileset dir=".">
 		    <include name="application/**"/>
+		    <include name="docs/**"/>
 		    <include name="public/**"/>
-		    <include name="library/**"/>
+		    <include name="library/Wingz/**"/>
 		    <include name="index.php"/>
 		    <include name="maintenance.html"/>
-		    <include name="web.config"/>
 		  </fileset>
 		</ftpdeploy>
 	</target>
