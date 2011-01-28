@@ -165,6 +165,21 @@ class Wingz_Service_Joindin
         }
         return $response->getBody();
     }
+    /**
+     * Get a listing of events
+     * 
+     * @return	Wingz_Service_Joindin_Model_Events
+     * @fix	    Issue reported by Maarten on phpbnl11
+     */
+    public function getEvents($itemCount = 0)
+    {
+        $joindIn = new Wingz_Service_Joindin();
+        $joindIn->setOutput(Wingz_Service_Joindin::JOINDIN_OUTPUT_XML);
+        $response = $joindIn->event()->getList();
+        return new Wingz_Service_Joindin_Model_Events(
+            new SimpleXMLElement($response), $itemCount);
+    } 
+    
     public function __call($method, $args)
     {
         $service = null;
