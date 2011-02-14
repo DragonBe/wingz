@@ -1,6 +1,16 @@
 <?php
-
-Interface Application_Model_Interface
+/**
+ * Wingz: Write PHP, deploy anywhere
+ * 
+ * Wingz is an example application that uses a fully working Zend Framework
+ * application that can run on Linux w/ Apache, Microsoft Windows w/ IIS and
+ * on Microsoft Windows Azure w/ IIS.
+ * 
+ * @license		CreativeCommons-Attribution-ShareAlike
+ * @link        http://creativecommons.org/licenses/by-sa/3.0/
+ * @category	Wingz
+ */
+interface Application_Model_Interface
 {
     public function populate($row);
     public function toArray();
