@@ -17,8 +17,8 @@ class Application_Model_EventTest extends PHPUnit_Framework_TestCase
     {
         $this->assertNull($this->_event->getId());
         $this->assertNull($this->_event->getName());
-        $this->assertType('DateTime', $this->_event->getStart());
-        $this->assertType('DateTime', $this->_event->getEnd());
+        $this->assertInstanceOf('DateTime', $this->_event->getStart());
+        $this->assertInstanceOf('DateTime', $this->_event->getEnd());
     }
     public function eventProvider()
     {
