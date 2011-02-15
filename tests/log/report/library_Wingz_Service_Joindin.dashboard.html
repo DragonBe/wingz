@@ -27,7 +27,7 @@
             <h2>Class Coverage Distribution</h2>
             <canvas id="classCoverageDistribution" width="475" height="200"></canvas>
             <script>
-            var ccd = new RGraph.Bar('classCoverageDistribution', [6,0,0,0,0,0,0,0,0,0,0,0]);
+            var ccd = new RGraph.Bar('classCoverageDistribution', [2,0,0,0,0,0,0,1,1,1,0,1]);
             ccd.Set('chart.background.barcolor1', 'white');
             ccd.Set('chart.background.barcolor2', 'white');
             ccd.Set('chart.colors', ['blue']);
@@ -44,7 +44,7 @@
             <h2>Class Complexity</h2>
             <canvas id="classComplexity" width="475" height="200"></canvas>
             <script>
-            var cc = new RGraph.Scatter('classComplexity', [[0,5,"blue","Wingz_Service_Joindin_Abstract"],[0,4,"blue","Wingz_Service_Joindin_Event"],[0,0,"blue","Wingz_Service_Joindin_Exception"],[0,11,"blue","Wingz_Service_Joindin_Model_Event"],[0,21,"blue","Wingz_Service_Joindin_Model_Events"],[0,3,"blue","Wingz_Service_Joindin_Site"]]);
+            var cc = new RGraph.Scatter('classComplexity', [[100,5,"blue","Wingz_Service_Joindin_Abstract"],[82.352941176471,4,"blue","Wingz_Service_Joindin_Event"],[0,0,"blue","Wingz_Service_Joindin_Exception"],[77.777777777778,11,"blue","Wingz_Service_Joindin_Model_Event"],[67.5,21,"blue","Wingz_Service_Joindin_Model_Events"],[0,3,"blue","Wingz_Service_Joindin_Site"]]);
             cc.Set('chart.xmax', 100);
             cc.Set('chart.background.barcolor1', 'white');
             cc.Set('chart.background.barcolor2', 'white');
@@ -60,11 +60,10 @@
           <td valign="top">
             <h2>Top Project Risks</h2>
             <ul>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#13">Wingz_Service_Joindin_Model_Events</a> (462)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#13">Wingz_Service_Joindin_Model_Event</a> (132)</li>
-              <li><a href="library_Wingz_Service_Joindin_Abstract.php.html#13">Wingz_Service_Joindin_Abstract</a> (30)</li>
-              <li><a href="library_Wingz_Service_Joindin_Event.php.html#13">Wingz_Service_Joindin_Event</a> (20)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#13">Wingz_Service_Joindin_Model_Events</a> (36)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#13">Wingz_Service_Joindin_Model_Event</a> (12)</li>
               <li><a href="library_Wingz_Service_Joindin_Site.php.html#13">Wingz_Service_Joindin_Site</a> (12)</li>
+              <li><a href="library_Wingz_Service_Joindin_Event.php.html#13">Wingz_Service_Joindin_Event</a> (4)</li>
 
             </ul>
           </td>
@@ -73,15 +72,14 @@
             <h2>Least Tested Methods</h2>
             <ul>
               <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#64">Wingz_Service_Joindin_Model_Events::key</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#60">Wingz_Service_Joindin_Model_Events::rewind</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#52">Wingz_Service_Joindin_Model_Events::toArray</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#39">Wingz_Service_Joindin_Model_Events::populate</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#68">Wingz_Service_Joindin_Model_Events::current</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#72">Wingz_Service_Joindin_Model_Events::next</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Site.php.html#23">Wingz_Service_Joindin_Site::status</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#87">Wingz_Service_Joindin_Model_Events::count</a> (0%)</li>
               <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#80">Wingz_Service_Joindin_Model_Events::seek</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#76">Wingz_Service_Joindin_Model_Events::valid</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#52">Wingz_Service_Joindin_Model_Events::toArray</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#35">Wingz_Service_Joindin_Model_Events::getEvents</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#73">Wingz_Service_Joindin_Model_Event::__get</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Site.php.html#23">Wingz_Service_Joindin_Site::status</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#48">Wingz_Service_Joindin_Model_Event::populate</a> (71%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Event.php.html#23">Wingz_Service_Joindin_Event::getList</a> (81%)</li>
+              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#39">Wingz_Service_Joindin_Model_Events::populate</a> (81%)</li>
 
             </ul>
           </td>
@@ -93,7 +91,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.3</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Feb 15 20:51:57 CET 2011.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.3</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Feb 15 21:04:41 CET 2011.</td></tr>
     </table>
 
     <br/>
