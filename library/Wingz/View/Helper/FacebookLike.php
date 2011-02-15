@@ -20,12 +20,12 @@ class Wingz_View_Helper_FacebookLike extends Zend_View_Helper_Abstract
     public function facebookLike($href = null, $self = true)
     {
         if (null === $href) {
-            $href = $_SERVER['REQUEST_URI'];
+            $href = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         }
         if (true === $self) {
             $href = sprintf('%s://%s%s',
                 isset ($_SERVER['HTTPS']) ? 'https' : 'http',
-                $_SERVER['HTTP_HOST'],
+                isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost',
                 $href
             );
         }

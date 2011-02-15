@@ -200,19 +200,19 @@
 <span class="lineNum" id="container19"><a name="19"></a><a href="#19" id="line19">      19</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                                                </span>
 <span class="lineNum" id="container20"><a name="20"></a><a href="#20" id="line20">      20</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">googleTracker</span><span class="keyword">(</span><span class="default">$trackerCode</span><span class="keyword">)</span>                                                                      
 <span class="lineNum" id="container21"><a name="21"></a><a href="#21" id="line21">      21</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                                                
-<span class="lineNum" id="container22"><a name="22"></a><a href="#22" id="line22">      22</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">view</span><span class="keyword">-&gt;</span><span class="default">headScript</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">appendScript</span><span class="keyword">(</span><span class="keyword">&lt;&lt;&lt;EOS</span>                                                               </span>
+<span class="lineNum" id="container22"><a name="22"></a><a href="#22" id="line22">      22</a> </span><span class="lineCov">              2 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">view</span><span class="keyword">-&gt;</span><span class="default">headScript</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">appendScript</span><span class="keyword">(</span><span class="keyword">&lt;&lt;&lt;EOS</span>                                                               </span>
 <span class="lineNum" id="container23"><a name="23"></a><a href="#23" id="line23">      23</a> </span>                : <span class="default">&nbsp;&nbsp;var&nbsp;_gaq&nbsp;=&nbsp;_gaq&nbsp;||&nbsp;[];</span>                                                                                             
-<span class="lineNum" id="container24"><a name="24"></a><a href="#24" id="line24">      24</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;_gaq.push(['_setAccount',&nbsp;'</span><span class="default">{</span><span class="default">$trackerCode</span><span class="keyword">}</span><span class="default">']);</span>                                                                      </span>
+<span class="lineNum" id="container24"><a name="24"></a><a href="#24" id="line24">      24</a> </span><span class="lineCov">              2 : <span class="default">&nbsp;&nbsp;_gaq.push(['_setAccount',&nbsp;'</span><span class="default">{</span><span class="default">$trackerCode</span><span class="keyword">}</span><span class="default">']);</span>                                                                      </span>
 <span class="lineNum" id="container25"><a name="25"></a><a href="#25" id="line25">      25</a> </span>                : <span class="default">&nbsp;&nbsp;_gaq.push(['_trackPageview']);</span>                                                                                     
 <span class="lineNum" id="container26"><a name="26"></a><a href="#26" id="line26">      26</a> </span>                :                                                                                                                      
 <span class="lineNum" id="container27"><a name="27"></a><a href="#27" id="line27">      27</a> </span>                : <span class="default">&nbsp;&nbsp;(function()&nbsp;{</span>                                                                                                      
 <span class="lineNum" id="container28"><a name="28"></a><a href="#28" id="line28">      28</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;ga&nbsp;=&nbsp;document.createElement('script');&nbsp;ga.type&nbsp;=&nbsp;'text/javascript';&nbsp;ga.async&nbsp;=&nbsp;true;</span>                         
 <span class="lineNum" id="container29"><a name="29"></a><a href="#29" id="line29">      29</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;ga.src&nbsp;=&nbsp;('https:'&nbsp;==&nbsp;document.location.protocol&nbsp;?&nbsp;'https://ssl'&nbsp;:&nbsp;'http://www')&nbsp;+&nbsp;'.google-analytics.com/ga.js';</span>
 <span class="lineNum" id="container30"><a name="30"></a><a href="#30" id="line30">      30</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;s&nbsp;=&nbsp;document.getElementsByTagName('script')[0];&nbsp;s.parentNode.insertBefore(ga,&nbsp;s);</span>                            
-<span class="lineNum" id="container31"><a name="31"></a><a href="#31" id="line31">      31</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;})();</span>                                                                                                              </span>
+<span class="lineNum" id="container31"><a name="31"></a><a href="#31" id="line31">      31</a> </span><span class="lineCov">              2 : <span class="default">&nbsp;&nbsp;})();</span>                                                                                                              </span>
 <span class="lineNum" id="container32"><a name="32"></a><a href="#32" id="line32">      32</a> </span>                : <span class="keyword">EOS</span>                                                                                                                  
-<span class="lineNum" id="container33"><a name="33"></a><a href="#33" id="line33">      33</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span>                                                                                                           </span>
-<span class="lineNum" id="container34"><a name="34"></a><a href="#34" id="line34">      34</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                                                </span>
+<span class="lineNum" id="container33"><a name="33"></a><a href="#33" id="line33">      33</a> </span><span class="lineCov">              2 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span>                                                                                                           </span>
+<span class="lineNum" id="container34"><a name="34"></a><a href="#34" id="line34">      34</a> </span><span class="lineCov">              2 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                                                </span>
 
 </pre>
         </td>
@@ -221,7 +221,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.3</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Feb 15 20:34:41 CET 2011.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.3</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Feb 15 20:51:57 CET 2011.</td></tr>
     </table>
 
     <br />
@@ -247,28 +247,28 @@
           "footer": ""
         },
         "panel22": {
-          "header": "1 test covers line 22",
-          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li></ul>",
+          "header": "2 tests cover line 22",
+          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li><li class=\"testPassed\">TourControllerTest::testTourPageDisplaysStepsToStart</li></ul>",
           "footer": ""
         },
         "panel24": {
-          "header": "1 test covers line 24",
-          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li></ul>",
+          "header": "2 tests cover line 24",
+          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li><li class=\"testPassed\">TourControllerTest::testTourPageDisplaysStepsToStart</li></ul>",
           "footer": ""
         },
         "panel31": {
-          "header": "1 test covers line 31",
-          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li></ul>",
+          "header": "2 tests cover line 31",
+          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li><li class=\"testPassed\">TourControllerTest::testTourPageDisplaysStepsToStart</li></ul>",
           "footer": ""
         },
         "panel33": {
-          "header": "1 test covers line 33",
-          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li></ul>",
+          "header": "2 tests cover line 33",
+          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li><li class=\"testPassed\">TourControllerTest::testTourPageDisplaysStepsToStart</li></ul>",
           "footer": ""
         },
         "panel34": {
-          "header": "1 test covers line 34",
-          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li></ul>",
+          "header": "2 tests cover line 34",
+          "body": "<ul><li class=\"testPassed\">FaqControllerTest::testFaqPageDisplaysQuestions</li><li class=\"testPassed\">TourControllerTest::testTourPageDisplaysStepsToStart</li></ul>",
           "footer": ""
         },
       "dummy": ""
