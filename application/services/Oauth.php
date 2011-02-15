@@ -61,7 +61,8 @@ class Application_Service_Oauth
 		$sessionAccessToken = $service . '_access_token';
 		
 		// check if there's a valid token returned
-		if (!empty ($request->getParams())) {
+		$params = $this->getRequest()->getParams();
+		if (!empty ($params)) {
 		    if (isset ($session->$sessionRequestToken)) {
     			$token = $consumer->getAccessToken($_GET,
     				unserialize($session->$sessionRequestToken));
