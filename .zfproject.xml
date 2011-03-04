@@ -73,11 +73,16 @@
               <actionMethod actionName="index"/>
               <actionMethod actionName="auth"/>
             </controllerFile>
+            <controllerFile controllerName="Facebook">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="auth"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory>
             <modelFile modelName="Twitter"/>
+            <modelFile modelName="Facebook"/>
           </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>
@@ -88,6 +93,12 @@
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Twitter">
+                <viewScriptFile forActionName="auth"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Facebook">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Facebook">
                 <viewScriptFile forActionName="auth"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
@@ -153,12 +164,13 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
         <testApplicationControllerDirectory>
-          <testApplicationControllerFile filesystemName="IndexControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="TourControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="FaqControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="OauthControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="IndexControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="TwitterControllerTest.php"/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
