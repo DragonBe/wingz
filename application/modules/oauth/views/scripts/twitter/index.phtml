@@ -1,0 +1,9 @@
+<?php if (null !== $this->userName): ?>
+<p>Welcome back <?php echo $this->escape($this->userName) ?></p>
+<?php else: ?>
+<p>Authenticate through <a href="<?php echo $this->url(array (
+    'module'=>'oauth',
+    'controller' => 'twitter',
+    'action' => 'auth',
+), null, true) ?>">Twitter</a>.</p>
+<?php endif;?>

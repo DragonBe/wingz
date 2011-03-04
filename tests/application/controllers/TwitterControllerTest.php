@@ -2,7 +2,7 @@
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
-class IndexControllerTest extends PHPUnit_Framework_TestCase
+class TwitterControllerTest extends PHPUnit_Framework_TestCase
 {
 
     public function setUp()
