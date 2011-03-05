@@ -3,7 +3,11 @@ Wingz
 
 This is a social mashup using joindin for retrieving conference information and using social platforms like twitter, facebook, linkedin, gowalla and foursquare to let the world know which conference you're going to, what talk you're attending and what feedback you've given to the speaker.
 
-Now also including Facebook API integration (partially)
+Now also including Facebook API integration (partially), showing a list of upcoming events in your Facebook profile.
+Primary tasks here:
+1. Change RSVP status
+2. Notify your network about the talks (messages)
+3. Integrate with joind.in
 
 Website
 =======
