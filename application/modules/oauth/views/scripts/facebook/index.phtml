@@ -1,1 +1,40 @@
-<br /><br /><center>View script for controller <b>Facebook</b> and script/action name <b>index</b></center>
+<?php $this->headTitle('Login with Facebook')?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/css/events.css'))?>
+
+<?php if (!empty ($this->name)):?>
+<p>Welcome <strong><?php echo $this->escape($this->name) ?></strong>!</p>
+<?php if (!empty ($this->events)): ?>
+
+<?php foreach ($this->events as $event):?>
+
+<div class="eventBox">
+<h2 class="eventTitle">
+    <a href="http://www.facebook.com/#!/event.php?eid=<?php echo $this->escape($event->id) ?>" 
+    title="<?php echo $this->escape($event->name)?>"><?php echo $this->escape($event->name)?></a></h2>
+    <div class="eventAbstract">
+        <div class="eventDescription">
+            <p><?php echo nl2br($this->escape($this->description[$event->id]))?></p>
+        </div>
+        <span class="eventImage">
+            <a href="http://www.facebook.com/#!/event.php?eid=<?php echo $this->escape($event->id) ?>" 
+            title="<?php echo $this->escape($event->name)?>"><img 
+            src="http://graph.facebook.com/<?php echo $this->escape($event->id) ?>/picture?type=large"
+            width="80" height="80" alt="Event icon" class="eventIcon"/>
+        </span>
+    </div>
+    <div class="clear">&nbsp;</div>
+</div>
+<?php endforeach;?>
+
+<?php else:?>
+<p>You have no upcoming events at this moment</p>
+<?php endif;?>
+<?php else: ?>
+<div style="text-align: center; height: 450px; padding: 50px 0;">
+<?php echo $this->facebookLogin(array (
+    'module' => 'oauth',
+    'controller' => 'facebook',
+    'action' => 'auth',
+))?>
+</div>
+<?php endif; ?>

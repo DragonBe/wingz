@@ -10,140 +10,358 @@
  * @link        http://creativecommons.org/licenses/by-sa/3.0/
  * @category	Wingz
  */
-class Wingz_Service_Facebook extends Zend_Http_Client
+
+/**
+ * Class that allows to interact with the Facebook API in a Zend Framwork
+ * preferred way.
+ * 
+ * @package		Wingz_Service
+ * @version		$Id:$
+ * @link		http://developers.facebook.com/docs/authentication/
+ */
+class Wingz_Service_Facebook
 {
-    const OAUTH_BASE_URI = 'https://graph.facebook.com/oauth';
-    
-    const DIALOG_PAGE = 'page';
-    
-    const DIALOG_POPUP = 'popup';
-    
-    const DIALOG_WAP = 'wap';
-    
-    const DIALOG_TOUCH = 'touch';
-    
-    protected $_clientId;
-    
-    protected $_key;
-    
-    protected $_secret;
-    
-    protected $_redirectUri;
-    
-    protected $_display;
-    
-    protected $_accessToken;
-    
-    protected $_errors = array ();
+    const FB_OAUTH_URI = 'https://www.facebook.com/dialog/oauth';
+    const FB_CONN_URI = 'https://graph.facebook.com/oauth/access_token';
+    const FB_API_URI = 'https://graph.facebook.com/me';
     
     /**
-     * @var 	Zend_Oauth_Consumer
+     * @var 	string The app ID for the Facebook app
      */
-    protected $_oAuthConsumer;
-    
-    public function __construct($options = null, Zend_Oauth_Consumer $consumer = null)
+    protected $_client_id;
+    /**
+     * @var 	string The app secret key for the Facebook app
+     */
+    protected $_client_secret;
+    /**
+     * @var 	string The redirection url for the Facebook app
+     */
+    protected $_redirect_uri;
+    /**
+     * @var 	string The scope of the Facebook app
+     */
+    protected $_scope;
+    /**
+     * @var 	string The state for the Facebook app
+     */
+    protected $_state;
+    /**
+     * @var 	string The response type for the Facebook app
+     */
+    protected $_response_type;
+    /**
+     * @var 	string The display for the Facebook app
+     */
+    protected $_display;
+    /**
+     * Constructor for this Facebook service layer
+     * 
+     * @param null|array $options A list of optional settings for the FB API
+     */
+    public function __construct($options = null)
     {
-        if (null === $options) $options = array ();
-        if ($options instanceof Zend_Config) $options = $options->toArray();
-        if (isset ($options['client_id'])) $this->setClientId($options['client_id']);
-        if (isset ($options['consumerKey'])) $this->setKey($options['consumerKey']);
-        if (isset ($options['consumerSecret'])) $this->setSecret($options['consumerSecret']);
-        if (isset ($options['redirect_uri'])) $this->setRedirectUri($options['redirect_uri']);
-        if (isset ($options['access_token'])) $this->setAccessToken($options['access_token']);
-        if (isset ($options['display'])) $this->setDisplay($options['display']);
+        if (null !== $options) {
+            $this->setOptions($options);
+        }
     }
-    
-    public function setClientId($clientId)
+    /**
+     * Sets the app ID
+     * 
+     * @param 	string $client_id
+     * @return	Wingz_Service_Facebook
+     */
+    public function setClientId($client_id)
     {
-        $this->_clientId = (string) $clientId;
+        $this->_client_id = (string) $client_id;
         return $this;
     }
+    /**
+     * Retrieves the app ID
+     * 
+     * @return	string
+     */
     public function getClientId()
     {
-        return $this->_clientId;
+        return $this->_client_id;
     }
-    public function setKey($key)
+    /**
+     * Sets the secret key for this Facebook App
+     * 
+     * @param 	string $client_secret
+     * @return	Wingz_Service_Facebook
+     */
+    public function setClientSecret($client_secret)
     {
-        $this->_key = (string) $key;
+        $this->_client_secret = (string) $client_secret;
         return $this;
     }
-    public function getKey()
+    /**
+     * Retrieves the secret key of this Facebook app
+     * 
+     * @return	string
+     */
+    public function getClientSecret()
     {
-        return $this->_key;
+        return $this->_client_secret;
     }
-    public function setSecret($secret)
+    /**
+     * Sets the redirection URI for Facebook to return to when authentication
+     * is completed
+     *  
+     * @param 	string $redirect_uri
+     * @return	Wingz_Service_Facebook
+     */
+    public function setRedirectUri($redirect_uri)
     {
-        $this->_secret = (string) $secret;
+        $this->_redirect_uri = (string) $redirect_uri;
         return $this;
     }
-    public function getSecret()
-    {
-        return $this->_secret;
-    }
-    public function setRedirectUri($redirectUri)
-    {
-        $this->_redirectUri = (string) $redirectUri;
-        return $this;
-    }
+    /**
+     * Retrieves the redirection URI
+     * 
+     * @return	string
+     */
     public function getRedirectUri()
     {
-        return $this->_redirectUri;
+        return $this->_redirect_uri;
     }
+    /**
+     * Sets the scope setting for this app
+     * 
+     * @param 	string $scope
+     * @return	Wingz_Service_Facebook
+     * @link	http://developers.facebook.com/docs/authentication/permissions
+     */
+    public function setScope($scope)
+    {
+        $this->_scope = (string) $scope;
+        return $this;
+    }
+    /**
+     * Retrievest the scope of this Facebook app
+     * 
+     * @return	string
+     */
+    public function getScope()
+    {
+        return $this->_scope;
+    }
+    /**
+     * Sets the state for this Facebook app
+     * 
+     * @param 	string $state
+     * @return	Wingz_Service_Facebook
+     * @link	http://developers.facebook.com/docs/reference/dialogs/oauth/
+     */
+    public function setState($state)
+    {
+        $this->_state = (string) $state;
+        return $this;
+    }
+    /**
+     * Retrieves the state from this Facebook app
+     * 
+     * @return	string
+     */
+    public function getState()
+    {
+        return $this->_state;
+    }
+    /**
+     * Set the response type for this Facebook app
+     * 
+     * @param 	string $response_type
+     * @return	Wingz_Service_Facebook
+     * @link	http://developers.facebook.com/docs/reference/dialogs/oauth/
+     */
+    public function setResponseType($response_type)
+    {
+        $this->_response_type = (string) $response_type;
+        return $this;
+    }
+    /**
+     * Retrieves the response type from this Facebook app
+     * 
+     * @return	string
+     */
+    public function getResponseType()
+    {
+        return $this->_response_type;
+    }
+    /**
+     * Sets the display portion of this Facebook app.
+     * 
+     * @param 	string $display
+     * @return	Wingz_Service_Facebook
+     * @link	http://developers.facebook.com/docs/reference/dialogs/oauth/
+     */
     public function setDisplay($display)
     {
         $this->_display = (string) $display;
         return $this;
     }
+    /**
+     * Retrieves the display from this Facebook app
+     * 
+     * @return	string
+     */
     public function getDisplay()
     {
-        if (null === $this->_display) {
-            $this->setDisplay(self::DIALOG_PAGE);
-        }
         return $this->_display;
     }
-    public function setAccessToken($accessToken)
+    /**
+     * Sets an array of options for this Facebook app
+     * 
+     * @param 	array|Zend_Config $options
+     * @return	Wingz_Service_Facebook
+     * @link	http://developers.facebook.com/docs/reference/dialogs/oauth/
+     */
+    public function setOptions($options)
     {
-        $this->_accessToken = (string) $accessToken;
-        return $this;
-    }
-    public function getAccessToken()
-    {
-        return $this->_accessToken;
-    }
-    public function addError($errorMessage)
-    {
-        $this->_errors[] = $errorMessage;
-        return $this;
-    }
-    public function getErrors()
-    {
-        return $this->_errors;
-    }
-    public function requestToken()
-    {
-        if (null === $this->getClientId()) {
-            throw new Wingz_Service_Facebook_Exception(
-                'Required option client_id is missing');
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
         }
-        if (null === $this->getRedirectUri()) {
-            throw new Wingz_Service_Facebook_Exception(
-                'Required option redirect_uri is missing');
-        }
-        $this->setUri(self::OAUTH_BASE_URI . '/authorize');
-        $this->setParameterGet(array (
-        	'client_id'    => $this->getClientId(),
-            'redirect_uri' => $this->getRedirectUri(),
-            'display'      => $this->getDisplay(),
-            'language'     => 'en_US',
-        ));
-        $this->setHeaders(array ('Accept-Language' => 'en_US'));
-        $response = $this->request();
+        if (isset ($options['client_id'])) $this->setClientId($options['client_id']);
+        if (isset ($options['client_secret'])) $this->setClientSecret($options['client_secret']);
+        if (isset ($options['redirect_uri'])) $this->setRedirectUri($options['redirect_uri']);
+        if (isset ($options['scope'])) $this->setScope($options['scope']);
+        if (isset ($options['state'])) $this->setState($options['state']);
+        if (isset ($options['response_type'])) $this->setResponseType($options['response_type']);
+        if (isset ($options['display'])) $this->setDisplay($options['display']);
+    }
+    /**
+     * Retrieves all settings as an array
+     * 
+     * @retun	array
+     */
+    public function toArray()
+    {
+        return array (
+            'client_id'     => $this->getClientId(),
+            'client_secret' => $this->getClientSecret(),
+            'redirect_uri'  => $this->getRedirectUri(),
+            'scope'         => $this->getScope(),
+            'state'         => $this->getState(),
+            'response_type' => $this->getResponseType(),
+            'display'       => $this->getDisplay(),
+        );
+    }
+    /**
+     * Creates an HTTP client for Facebook authentication
+     * 
+     * @return	Zend_Http_Client
+     * @link	http://developers.facebook.com/docs/authentication/
+     */
+    public function generateAuthUrl()
+    {
+        $client = new Zend_Http_Client();
+        $client->setConfig(array ('strict' => false))
+               ->setUri(self::FB_OAUTH_URI)
+               ->setParameterGet('client_id', $this->getClientId())
+               ->setParameterGet('redirect_uri', $this->getRedirectUri());
+        if (null !== $this->getScope())
+            $client->setParameterGet('scope', $this->getScope());
+        if (null !== $this->getState())
+            $client->setParameterGet('state', $this->getState());
+        if (null !== $this->getResponseType())
+            $client->setParameterGet('response_type', $this->getResponseType());
+        if (null !== $this->getDisplay())
+            $client->setParameterGet('display', $this->getDisplay());
+        return $client;
+    }
+    /**
+     * Creates an HTTP client for Facebook connect
+     * 
+     * @param 	string $code
+     * @return	Zend_Http_Client
+     * @link	http://developers.facebook.com/docs/authentication/
+     */
+    public function generateConnectUrl($code)
+    {
+        $client = new Zend_Http_Client();
+        $client->setConfig(array ('strict' => false))
+               ->setUri(self::FB_CONN_URI)
+               ->setParameterGet('client_id', $this->getClientId())
+               ->setParameterGet('redirect_uri', $this->getRedirectUri())
+               ->setParameterGet('client_secret', $this->getClientSecret())
+               ->setParameterGet('code', $code);
+        return $client;
+    }
+    
+    /**
+     * Authenticates to Facebook
+     * 
+     * @return	Zend_Http_Response
+     * @link	http://developers.facebook.com/docs/authentication/
+     */
+    public function authenticate()
+    {
+        $client = $this->generateAuthUrl();
+        $response = $client->request();
         if ($response->isSuccessful()) {
             return $response->getBody();
         }
-        // we got a bad response from Facebook
-        $failure = json_decode($response->getBody());
-        $this->addError($failure->error->message);
-        return false;
+    }
+    /**
+     * Links user profile to Facebook app
+     * 
+     * @param 	string $code
+     * @return	array
+     * @link	http://developers.facebook.com/docs/authentication/
+     */
+    public function connect($code)
+    {
+        $client = $this->generateConnectUrl($code);
+        $response = null;
+        try {
+            $response = $client->request();
+        } catch (Zend_Exception $e) {
+            return false;
+        }
+        $result = array ();
+        $query = $response->getBody();
+        $params = explode('&', $query);
+        foreach ($params as $keyValue) {
+            list ($key, $value) = explode('=', $keyValue);
+            $result[$key] = $value;
+        }
+        return $result;
+    }
+    /**
+     * Fetches user details from Facebook
+     * 
+     * @param 	string $access_token
+     * @return	stdClass
+     */
+    public function getUser($access_token)
+    {
+        $client = new Zend_Http_Client();
+        $client->setUri(self::FB_API_URI)
+               ->setParameterGet('access_token', $access_token);
+        $response = $client->request();
+        $user = json_decode($response->getBody());
+        return $user;
+    }
+    public function getUserEvents($access_token)
+    {
+        $client = new Zend_Http_Client();
+        $client->setConfig(array ('strict' => false))
+               ->setUri('https://graph.facebook.com/me/events')
+               ->setParameterGet('access_token', $access_token)
+               ->setParameterGet('since', 'yesterday');
+        $response = $client->request();
+        $events = json_decode($response->getBody());
+        return $events->data;
+    }
+    public function getEventDetails($access_token, $eventId)
+    {
+        $client = new Zend_Http_Client();
+        $client->setConfig(array ('strict' => false))
+               ->setUri('https://graph.facebook.com/' . $eventId)
+               ->setParameterGet('access_token', $access_token);
+        $response = $client->request();
+        $details = json_decode($response->getBody());
+        return $details;
     }
 }
+

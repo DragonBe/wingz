@@ -2,6 +2,8 @@
 
 .eventBox {}
 .eventTitle { font-weight: bold; font-size: 105%; }
+.eventTitle a { color: #000; }
+.eventTitle a:hover { color: #00c4ff; }
 .eventAbstract { text-align: right; }
 .eventDescription { text-align: left; float: right; width: 910px; }
 .eventDescription p { margin: 0 5px; }

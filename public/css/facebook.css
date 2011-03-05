@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+.fb_button_text {
+    background: url("http://static.ak.fbcdn.net/rsrc.php/zL/r/FGFbc80dUKj.png") repeat scroll 0 0 #5F78AB;
+    border-bottom: 1px solid #1A356E;
+    border-top: 1px solid #879AC0;
+    color: #FFFFFF;
+    display: block;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-weight: bold;
+    margin: 1px 1px 0 21px;
+    padding: 2px 6px 3px;
+    text-shadow: none;
+}
+.fb_button {
+    font-size: 11px;
+    line-height: 14px;
+    text-decoration: none;
+    background: url("http://static.ak.fbcdn.net/rsrc.php/zL/r/FGFbc80dUKj.png") no-repeat scroll 0 0 #29447E;
+    background-position: left -188px;
+    cursor: pointer;
+    display: inline-block;
+    outline: medium none;
+    padding: 0 0 0 1px;
+}
