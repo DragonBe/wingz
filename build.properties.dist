@@ -1,0 +1,14 @@
+
+# define your environment settings here
+env.linux-dev=wingz.linux
+env.linux-prod=wingz.cc
+env.win-dev=wingz.win
+env.win-prod=wingz.be
+env.azure-dev=wingz.cloudapp.net
+env.azure-prod=wingz.co
+
+# define any passwords you might need per environment
+auth.win-dev.username=yourUsername
+auth.win-dev.password=yourPassword
+auth.win-prod.username=yourProductionUsername
+auth.win-prod.password=yourProductionPassword
