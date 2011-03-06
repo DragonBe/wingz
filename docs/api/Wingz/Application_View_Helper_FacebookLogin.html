@@ -3,7 +3,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
-			<title>Docs For Class Wingz_View_Helper_GoogleTracker</title>
+			<title>Docs For Class Application_View_Helper_FacebookLogin</title>
 			<link rel="stylesheet" href="../media/stylesheet.css" />
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
@@ -12,7 +12,7 @@
 <h2 class="class-name"><img src="../media/images/Class_logo.png"
 														alt=" Class"
 														title=" Class"
-														style="vertical-align: middle"> Wingz_View_Helper_GoogleTracker</h2>
+														style="vertical-align: middle"> Application_View_Helper_FacebookLogin</h2>
 
 <a name="sec-description"></a>
 <div class="info-box">
@@ -25,20 +25,14 @@
 					</div>
 	<div class="info-box-body">
         		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Wingz: Write PHP, deploy anywhere</p>
-<p class="description"><p>Wingz is an example application that uses a fully working Zend Framework  application that can run on Linux w/ Apache, Microsoft Windows w/ IIS and  on Microsoft Windows Azure w/ IIS.</p></p>
-	<ul class="tags">
-				<li><span class="field">link:</span> <a href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a></li>
-				<li><span class="field">license:</span> CreativeCommons-Attribution-ShareAlike</li>
-			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_View---Helper---GoogleTracker.php.html">/View/Helper/GoogleTracker.php</a> (line <span class="field"><a href="../__filesource/fsource_Wingz__ViewHelperGoogleTracker.php.html#a13">13</a></span>)
+			Located in <a class="field" href="_View---Helper---FacebookLogin.php.html">/View/Helper/FacebookLogin.php</a> (line <span class="field"><a href="../__filesource/fsource_Wingz__ViewHelperFacebookLogin.php.html#a2">2</a></span>)
 		</p>
 		
 				
 		<pre>Zend_View_Helper_Abstract
    |
-   --Wingz_View_Helper_GoogleTracker</pre>
+   --Application_View_Helper_FacebookLogin</pre>
 	
 			</div>
 </div>
@@ -80,9 +74,9 @@
 			<div class="method-summary">
 																																<div class="method-definition">
 					<img src="../media/images/Method.png" alt=" "/>
-											<span class="method-result">void</span>
-										<a href="#googleTracker" title="details" class="method-name">googleTracker</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$trackerCode</span>)
+											<span class="method-result">string</span>
+										<a href="#facebookLogin" title="details" class="method-name">facebookLogin</a>
+											(<span class="var-type">array|string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$label</span> = <span class="var-default">'Login with Facebook'</span>])
 									</div>
 																<div class="method-definition">
 					<img src="../media/images/Method.png" alt=" "/>
@@ -109,14 +103,14 @@
 		<div class="info-box-body">
 			
 <a name="var$view" id="$view"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<img src="../media/images/Variable.png" />
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$view</span>
-						(line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperGoogleTracker.php.html#a15">15</a></span>)
+						(line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperFacebookLogin.php.html#a4">4</a></span>)
 		</span>
 	</div>
 
@@ -145,41 +139,46 @@
 		</div>
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
-<a name="methodgoogleTracker" id="googleTracker"><!-- --></a>
-<div class="oddrow">
+<a name="methodfacebookLogin" id="facebookLogin"><!-- --></a>
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../media/images/Method.png" />
-		<span class="method-title">googleTracker</span> (line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperGoogleTracker.php.html#a20">20</a></span>)
+		<span class="method-title">facebookLogin</span> (line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperFacebookLogin.php.html#a17">17</a></span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Provides a facebook login button</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> The HTML code for generating such a button</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">string</span>
 		<span class="method-name">
-			googleTracker
+			facebookLogin
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$trackerCode</span>)
+					(<span class="var-type">array|string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$label</span> = <span class="var-default">'Login with Facebook'</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$trackerCode</span>			</li>
+				<span class="var-type">array|string</span>
+				<span class="var-name">$url</span><span class="var-description">: The url this button should point to</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$label</span><span class="var-description">: The label for the login button</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="methodsetView" id="setView"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../media/images/Method.png" />
-		<span class="method-title">setView</span> (line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperGoogleTracker.php.html#a16">16</a></span>)
+		<span class="method-title">setView</span> (line <span class="line-number"><a href="../__filesource/fsource_Wingz__ViewHelperFacebookLogin.php.html#a6">6</a></span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
