@@ -77,6 +77,10 @@
               <actionMethod actionName="index"/>
               <actionMethod actionName="auth"/>
             </controllerFile>
+            <controllerFile controllerName="Identica">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="auth"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false"/>
@@ -99,6 +103,12 @@
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Facebook">
+                <viewScriptFile forActionName="auth"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Identica">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Identica">
                 <viewScriptFile forActionName="auth"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
@@ -172,6 +182,16 @@
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
         </testApplicationControllerDirectory>
+        <testApplicationModulesDirectory>
+          <testApplicationModuleDirectory forModuleName="oauth">
+            <testApplicationControllerDirectory>
+              <testApplicationControllerFile forControllerName="Identica">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="auth"/>
+              </testApplicationControllerFile>
+            </testApplicationControllerDirectory>
+          </testApplicationModuleDirectory>
+        </testApplicationModulesDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
         <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
