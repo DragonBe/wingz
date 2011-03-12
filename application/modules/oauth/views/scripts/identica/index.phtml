@@ -1,0 +1,9 @@
+<?php if (null !== $this->userName): ?>
+<p>Welcome back <?php echo $this->escape($this->userName) ?></p>
+<?php else: ?>
+<p>Authenticate through <a href="<?php echo $this->url(array (
+    'module'=>'oauth',
+    'controller' => 'identica',
+    'action' => 'auth',
+), null, true) ?>">Identi.ca</a>.</p>
+<?php endif;?>

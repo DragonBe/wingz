@@ -33,6 +33,15 @@ twitter.callbackUrl = http://wingz.cc/oauth/twitter
 twitter.siteUrl = http://twitter.com/oauth
 twitter.consumerKey = 
 twitter.consumerSecret = 
+
+; Identica API
+; You can get an API key for identica at
+; http://identi.ca/settings/oauthapps/new
+identica.callbackUrl = http://wingz.cc/oauth/identica/auth
+identica.siteUrl = http://identi.ca/api/oauth
+identica.consumerKey = 
+identica.consumerSecret = 
+
 ; LinkedIn API
 ; You can get an API key for LinkedIn at
 ;
