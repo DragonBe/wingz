@@ -1,5 +1,26 @@
+<?php $this->headTitle('Identica messaging') ?>
+<?php $this->JQuery()->addOnLoad(<<<EOS
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function(position) {
+        jQuery('#latitude').val(position.coords.latitude);
+        jQuery('#longitude').val(position.coords.longitude);
+	}); 
+}
+EOS
+)?>
+
+<h1>Identi.ca Messaging</h1>
+
 <?php if (null !== $this->userName): ?>
 <p>Welcome back <?php echo $this->escape($this->userName) ?></p>
+
+<?php echo $this->form ?>
+<ul>
+<?php foreach ($this->status as $status): ?>
+<li><?php echo $this->escape($status->text)?></li>
+<?php endforeach;?>
+</ul>
+<p>Powered by <a href="http://identi.ca">identi.ca</a> v<?php echo $this->escape($this->version)?></p>
 <?php else: ?>
 <p>Authenticate through <a href="<?php echo $this->url(array (
     'module'=>'oauth',
