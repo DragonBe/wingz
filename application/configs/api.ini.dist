@@ -41,6 +41,8 @@ identica.callbackUrl = http://wingz.cc/oauth/identica/auth
 identica.siteUrl = http://identi.ca/api/oauth
 identica.consumerKey = 
 identica.consumerSecret = 
+identica.username =
+identica.password = 
 
 ; LinkedIn API
 ; You can get an API key for LinkedIn at

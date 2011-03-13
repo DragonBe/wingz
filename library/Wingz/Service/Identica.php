@@ -49,7 +49,7 @@ class Wingz_Service_Identica extends Zend_Rest_Client
     /**
      * OAuth Endpoint
      */
-    const OAUTH_BASE_URI = 'http://identi.ca/api';
+    const OAUTH_BASE_URI = 'https://identi.ca/api';
     /**
      * @var API base
      */
@@ -73,6 +73,13 @@ class Wingz_Service_Identica extends Zend_Rest_Client
      * @var string
      */
     protected $_username;
+    
+    /**
+     * Password
+     * 
+     * @var string
+     */
+    protected $_password;
 
     /**
      * Current method type (for method proxying)
@@ -116,6 +123,14 @@ class Wingz_Service_Identica extends Zend_Rest_Client
      * @var Zend_Http_Client
      */
     protected $_localHttpClient = null;
+    
+    /**
+     * Setting to override oauth authentication and use simple username/password
+     * combo
+     * 
+     * @var boolean
+     */
+    protected $_oauthEnabled = true;
 
     /**
      * Constructor
@@ -138,6 +153,9 @@ class Wingz_Service_Identica extends Zend_Rest_Client
         $this->_options = $options;
         if (isset($options['username'])) {
             $this->setUsername($options['username']);
+        }
+        if (isset($options['password'])) {
+            $this->setPassword($options['password']);
         }
         if (isset($options['accessToken'])
         && $options['accessToken'] instanceof Zend_Oauth_Token_Access) {
@@ -211,6 +229,28 @@ class Wingz_Service_Identica extends Zend_Rest_Client
         $this->_username = $value;
         return $this;
     }
+    
+    /**
+     * Retrieve password
+     * 
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->_password;
+    }
+    
+    /**
+     * Set password
+     * 
+     * @param 	string $password
+     * @return	Wingz_Service_Identica
+     */
+    public function setPassword($password)
+    {
+        $this->_password = (string) $password;
+        return $this;
+    }
 
     /**
      * Proxy service methods
@@ -264,6 +304,28 @@ class Wingz_Service_Identica extends Zend_Rest_Client
 
         return call_user_func_array(array($this, $test), $params);
     }
+    
+    /**
+     * Enable or disable oauth usage
+     * 
+     * @param boolean $flag
+     * @return Wingz_Service_Identica
+     */
+    public function oauthEnable($flag = true)
+    {
+        $this->_oauthEnabled = (boolean) $flag;
+        return $this;
+    }
+    
+    /**
+     * Check to see if oauth should be used for authentication
+     * 
+     * @return boolean
+     */
+    public function isOauthEnabled()
+    {
+        return $this->_oauthEnabled;
+    }
 
     /**
      * Initialize HTTP authentication
@@ -272,7 +334,7 @@ class Wingz_Service_Identica extends Zend_Rest_Client
      */
     protected function _init()
     {
-        if (!$this->isAuthorised() && $this->getUsername() !== null) {
+        if ($this->isOauthEnabled() && !$this->isAuthorised() && $this->getUsername() !== null) {
             require_once 'Wingz/Service/Identica/Exception.php';
             throw new Wingz_Service_Identica_Exception(
                 'Identica session is unauthorised. You need to initialize '
