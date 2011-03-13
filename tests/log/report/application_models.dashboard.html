@@ -27,7 +27,7 @@
             <h2>Class Coverage Distribution</h2>
             <canvas id="classCoverageDistribution" width="475" height="200"></canvas>
             <script>
-            var ccd = new RGraph.Bar('classCoverageDistribution', [3,1,0,0,0,0,0,0,0,1,1,1]);
+            var ccd = new RGraph.Bar('classCoverageDistribution', [7,0,0,0,0,0,0,0,0,0,0,0]);
             ccd.Set('chart.background.barcolor1', 'white');
             ccd.Set('chart.background.barcolor2', 'white');
             ccd.Set('chart.colors', ['blue']);
@@ -44,7 +44,7 @@
             <h2>Class Complexity</h2>
             <canvas id="classComplexity" width="475" height="200"></canvas>
             <script>
-            var cc = new RGraph.Scatter('classComplexity', [[4.3478260869565,11,"blue","Application_Model_Abstract"],[0,0,"blue","Application_Model_DbTable_User"],[93.75,17,"blue","Application_Model_Event"],[0,13,"blue","Application_Model_Mapper_Abstract"],[0,2,"blue","Application_Model_Mapper_User"],[100,11,"blue","Application_Model_Role"],[87.272727272727,30,"blue","Application_Model_User"]]);
+            var cc = new RGraph.Scatter('classComplexity', [[0,11,"blue","Application_Model_Abstract"],[0,0,"blue","Application_Model_DbTable_User"],[0,17,"blue","Application_Model_Event"],[0,13,"blue","Application_Model_Mapper_Abstract"],[0,2,"blue","Application_Model_Mapper_User"],[0,11,"blue","Application_Model_Role"],[0,30,"blue","Application_Model_User"]]);
             cc.Set('chart.xmax', 100);
             cc.Set('chart.background.barcolor1', 'white');
             cc.Set('chart.background.barcolor2', 'white');
@@ -60,10 +60,11 @@
           <td valign="top">
             <h2>Top Project Risks</h2>
             <ul>
+              <li><a href="application_models_User.php.html#13">Application_Model_User</a> (930)</li>
+              <li><a href="application_models_Event.php.html#13">Application_Model_Event</a> (306)</li>
               <li><a href="application_models_Mappers_Abstract.php.html#13">Application_Model_Mapper_Abstract</a> (182)</li>
-              <li><a href="application_models_Abstract.php.html#13">Application_Model_Abstract</a> (116)</li>
-              <li><a href="application_models_User.php.html#13">Application_Model_User</a> (31)</li>
-              <li><a href="application_models_Event.php.html#13">Application_Model_Event</a> (17)</li>
+              <li><a href="application_models_Role.php.html#13">Application_Model_Role</a> (132)</li>
+              <li><a href="application_models_Abstract.php.html#13">Application_Model_Abstract</a> (132)</li>
               <li><a href="application_models_Mappers_User.php.html#13">Application_Model_Mapper_User</a> (6)</li>
 
             </ul>
@@ -72,16 +73,16 @@
           <td valign="top">
             <h2>Least Tested Methods</h2>
             <ul>
-              <li><a href="application_models_Mappers_Abstract.php.html#65">Application_Model_Mapper_Abstract::fetchAll</a> (0%)</li>
-              <li><a href="application_models_Mappers_Abstract.php.html#62">Application_Model_Mapper_Abstract::fetchRow</a> (0%)</li>
-              <li><a href="application_models_Mappers_Abstract.php.html#68">Application_Model_Mapper_Abstract::save</a> (0%)</li>
-              <li><a href="application_models_Mappers_Abstract.php.html#78">Application_Model_Mapper_Abstract::_validateModel</a> (0%)</li>
-              <li><a href="application_models_User.php.html#179">Application_Model_User::getMapper</a> (0%)</li>
-              <li><a href="application_models_Mappers_User.php.html#15">Application_Model_Mapper_User::getDbTable</a> (0%)</li>
-              <li><a href="application_models_Mappers_Abstract.php.html#56">Application_Model_Mapper_Abstract::find</a> (0%)</li>
-              <li><a href="application_models_Mappers_Abstract.php.html#46">Application_Model_Mapper_Abstract::getDbTable</a> (0%)</li>
-              <li><a href="application_models_Abstract.php.html#45">Application_Model_Abstract::find</a> (0%)</li>
-              <li><a href="application_models_Abstract.php.html#38">Application_Model_Abstract::getMapper</a> (0%)</li>
+              <li><a href="application_models_User.php.html#75">Application_Model_User::getId</a> (0%)</li>
+              <li><a href="application_models_User.php.html#65">Application_Model_User::setId</a> (0%)</li>
+              <li><a href="application_models_User.php.html#85">Application_Model_User::setFirstName</a> (0%)</li>
+              <li><a href="application_models_User.php.html#95">Application_Model_User::getFirstName</a> (0%)</li>
+              <li><a href="application_models_User.php.html#105">Application_Model_User::setLastName</a> (0%)</li>
+              <li><a href="application_models_User.php.html#52">Application_Model_User::__construct</a> (0%)</li>
+              <li><a href="application_models_Role.php.html#90">Application_Model_Role::toArray</a> (0%)</li>
+              <li><a href="application_models_Role.php.html#50">Application_Model_Role::getId</a> (0%)</li>
+              <li><a href="application_models_Role.php.html#60">Application_Model_Role::setName</a> (0%)</li>
+              <li><a href="application_models_Role.php.html#70">Application_Model_Role::getName</a> (0%)</li>
 
             </ul>
           </td>
@@ -93,7 +94,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.3</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Feb 15 21:06:39 CET 2011.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.4</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Sat Mar 12 19:03:54 CET 2011.</td></tr>
     </table>
 
     <br/>
