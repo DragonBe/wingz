@@ -27,7 +27,7 @@
             <h2>Class Coverage Distribution</h2>
             <canvas id="classCoverageDistribution" width="475" height="200"></canvas>
             <script>
-            var ccd = new RGraph.Bar('classCoverageDistribution', [17,0,0,0,0,0,0,0,0,1,0,2]);
+            var ccd = new RGraph.Bar('classCoverageDistribution', [17,0,0,0,0,0,0,0,0,0,1,5]);
             ccd.Set('chart.background.barcolor1', 'white');
             ccd.Set('chart.background.barcolor2', 'white');
             ccd.Set('chart.colors', ['blue']);
@@ -44,7 +44,7 @@
             <h2>Class Complexity</h2>
             <canvas id="classComplexity" width="475" height="200"></canvas>
             <script>
-            var cc = new RGraph.Scatter('classComplexity', [[0,23,"blue","Wingz_Auth_Adapter_Facebook"],[100,0,"blue","Wingz_Exception"],[0,10,"blue","Wingz_Model_Event"],[89.189189189189,18,"blue","Wingz_Model_EventLogo"],[0,0,"blue","Wingz_Service_Exception"],[0,40,"blue","Wingz_Service_Facebook"],[100,0,"blue","Wingz_Service_Facebook_Exception"],[0,0,"blue","Wingz_Service_Identica"],[0,22,"blue","Wingz_Service_Joindin"],[0,5,"blue","Wingz_Service_Joindin_Abstract"],[0,4,"blue","Wingz_Service_Joindin_Event"],[0,0,"blue","Wingz_Service_Joindin_Exception"],[0,11,"blue","Wingz_Service_Joindin_Model_Event"],[0,21,"blue","Wingz_Service_Joindin_Model_Events"],[0,3,"blue","Wingz_Service_Joindin_Site"],[0,2,"blue","Wingz_View_Helper_EventListItem"],[0,2,"blue","Wingz_View_Helper_Facebook"],[0,7,"blue","Wingz_View_Helper_FacebookLike"],[0,3,"blue","Application_View_Helper_FacebookLogin"],[0,2,"blue","Wingz_View_Helper_GoogleTracker"]]);
+            var cc = new RGraph.Scatter('classComplexity', [[0,23,"blue","Wingz_Auth_Adapter_Facebook"],[92.857142857143,3,"blue","Wingz_Controller_Plugin_DefaultLocale"],[100,0,"blue","Wingz_Exception"],[0,10,"blue","Wingz_Model_Event"],[100,18,"blue","Wingz_Model_EventLogo"],[0,0,"blue","Wingz_Service_Exception"],[0,40,"blue","Wingz_Service_Facebook"],[100,0,"blue","Wingz_Service_Facebook_Exception"],[0,118,"blue","Wingz_Service_Identica"],[0,29,"blue","Wingz_Service_Identica_Client"],[0,0,"blue","Wingz_Service_Identica_Exception"],[0,22,"blue","Wingz_Service_Joindin"],[0,5,"blue","Wingz_Service_Joindin_Abstract"],[0,4,"blue","Wingz_Service_Joindin_Event"],[0,0,"blue","Wingz_Service_Joindin_Exception"],[0,11,"blue","Wingz_Service_Joindin_Model_Event"],[0,21,"blue","Wingz_Service_Joindin_Model_Events"],[0,3,"blue","Wingz_Service_Joindin_Site"],[0,2,"blue","Wingz_View_Helper_EventListItem"],[0,2,"blue","Wingz_View_Helper_Facebook"],[100,7,"blue","Wingz_View_Helper_FacebookLike"],[0,3,"blue","Application_View_Helper_FacebookLogin"],[100,2,"blue","Wingz_View_Helper_GoogleTracker"]]);
             cc.Set('chart.xmax', 100);
             cc.Set('chart.background.barcolor1', 'white');
             cc.Set('chart.background.barcolor2', 'white');
@@ -60,16 +60,16 @@
           <td valign="top">
             <h2>Top Project Risks</h2>
             <ul>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#2">Wingz_Service_Identica_Client</a> (870)</li>
               <li><a href="library_Wingz_Auth_Adapter_Facebook.php.html#13">Wingz_Auth_Adapter_Facebook</a> (552)</li>
               <li><a href="library_Wingz_Service_Joindin.php.html#13">Wingz_Service_Joindin</a> (506)</li>
               <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#13">Wingz_Service_Joindin_Model_Events</a> (462)</li>
               <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#13">Wingz_Service_Joindin_Model_Event</a> (132)</li>
-              <li><a href="library_Wingz_View_Helper_FacebookLike.php.html#13">Wingz_View_Helper_FacebookLike</a> (56)</li>
               <li><a href="library_Wingz_Service_Joindin_Abstract.php.html#13">Wingz_Service_Joindin_Abstract</a> (30)</li>
               <li><a href="library_Wingz_Service_Joindin_Event.php.html#13">Wingz_Service_Joindin_Event</a> (20)</li>
-              <li><a href="library_Wingz_Model_EventLogo.php.html#2">Wingz_Model_EventLogo</a> (18)</li>
-              <li><a href="library_Wingz_View_Helper_FacebookLogin.php.html#2">Application_View_Helper_FacebookLogin</a> (12)</li>
               <li><a href="library_Wingz_Service_Joindin_Site.php.html#13">Wingz_Service_Joindin_Site</a> (12)</li>
+              <li><a href="library_Wingz_View_Helper_FacebookLogin.php.html#2">Application_View_Helper_FacebookLogin</a> (12)</li>
+              <li><a href="library_Wingz_Controller_Plugin_DefaultLocale.php.html#2">Wingz_Controller_Plugin_DefaultLocale</a> (3)</li>
 
             </ul>
           </td>
@@ -77,16 +77,16 @@
           <td valign="top">
             <h2>Least Tested Methods</h2>
             <ul>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#42">Wingz_Service_Joindin_Model_Event::__construct</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Event.php.html#23">Wingz_Service_Joindin_Event::getList</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Abstract.php.html#47">Wingz_Service_Joindin_Abstract::getJoindin</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Abstract.php.html#37">Wingz_Service_Joindin_Abstract::setJoindin</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#48">Wingz_Service_Joindin_Model_Event::populate</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#57">Wingz_Service_Joindin_Model_Event::toArray</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Events.php.html#20">Wingz_Service_Joindin_Model_Events::__construct</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#73">Wingz_Service_Joindin_Model_Event::__get</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Model_Event.php.html#66">Wingz_Service_Joindin_Model_Event::__set</a> (0%)</li>
-              <li><a href="library_Wingz_Service_Joindin_Abstract.php.html#25">Wingz_Service_Joindin_Abstract::__construct</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#153">Wingz_Service_Identica_Client::getFormat</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#158">Wingz_Service_Identica_Client::accountVerifyCredentials</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#164">Wingz_Service_Identica_Client::statusesUserTimeline</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#138">Wingz_Service_Identica_Client::setFormat</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#124">Wingz_Service_Identica_Client::getHttpClient</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#87">Wingz_Service_Identica_Client::getPassword</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#97">Wingz_Service_Identica_Client::setOptions</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#113">Wingz_Service_Identica_Client::setHttpClient</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#170">Wingz_Service_Identica_Client::statusesUpdate</a> (0%)</li>
+              <li><a href="library_Wingz_Service_Identica_Client.php.html#196">Wingz_Service_Identica_Client::statusnetGetVersion</a> (0%)</li>
 
             </ul>
           </td>
@@ -98,7 +98,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.4</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Sat Mar 12 19:03:54 CET 2011.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.4</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3</a> and PHPUnit 3.5.11 at Tue Mar 22 17:52:31 CET 2011.</td></tr>
     </table>
 
     <br/>
