@@ -2,19 +2,12 @@
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
-class TwitterControllerTest extends PHPUnit_Framework_TestCase
+class TwitterControllerTest extends ControllerTestCase
 {
-
-    public function setUp()
+    public function testTwitterDisplaysLinkWhenNotAuthenticated()
     {
-        /* Setup Routine */
+        $this->dispatch('/oauth/twitter');
+        $this->assertQueryContentContains('a', 'Twitter');
     }
-
-    public function tearDown()
-    {
-        /* Tear Down Routine */
-    }
-
-
 }
 

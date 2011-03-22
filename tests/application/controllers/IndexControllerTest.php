@@ -1,20 +1,19 @@
 <?php
 
-require_once 'PHPUnit/Framework/TestCase.php';
+require_once TEST_PATH . '/ControllerTestCase.php';
 
-class IndexControllerTest extends PHPUnit_Framework_TestCase
+class IndexControllerTest extends ControllerTestCase
 {
-
-    public function setUp()
+    public function testIndexPageIsReachable()
     {
-        /* Setup Routine */
+        $this->dispatch('/');
+        $this->assertNotController('error');
+        $this->assertNotAction('error');
+        $this->assertModule('default');
+        $this->assertController('index');
+        $this->assertAction('index');
+        $this->assertResponseCode(200);
+        $this->assertQueryContentContains('h1', 'Overview of upcoming events');
     }
-
-    public function tearDown()
-    {
-        /* Tear Down Routine */
-    }
-
-
 }
 

@@ -19,10 +19,7 @@ class Oauth_IdenticaControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertModule($params['module']);
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertQueryContentContains('a', 'Identi.ca');
     }
 
     public function testAuthAction()
@@ -31,14 +28,8 @@ class Oauth_IdenticaControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $url = $this->url($this->urlizeOptions($params));
         $this->dispatch($url);
         
-        // assertions
-        $this->assertModule($params['module']);
-        $this->assertController($params['controller']);
-        $this->assertAction($params['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertResponseCode(302);
+        $this->assertRedirectTo('/oauth/identica/login');
     }
 
     public function testLoginAction()
@@ -51,10 +42,7 @@ class Oauth_IdenticaControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertModule($params['module']);
         $this->assertController($params['controller']);
         $this->assertAction($params['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertQuery('dl.zend_form');
     }
 
     public function testMessageAction()
@@ -64,13 +52,8 @@ class Oauth_IdenticaControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->dispatch($url);
         
         // assertions
-        $this->assertModule($params['module']);
-        $this->assertController($params['controller']);
-        $this->assertAction($params['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertResponseCode(302);
+        $this->assertRedirectTo('/oauth/identica');
     }
 
 

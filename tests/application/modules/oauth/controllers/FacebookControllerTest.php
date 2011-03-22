@@ -1,20 +1,13 @@
 <?php
 
-require_once 'PHPUnit/Framework/TestCase.php';
-
-class FacebookControllerTest extends PHPUnit_Framework_TestCase
+class FacebookControllerTest extends ControllerTestCase
 {
-
-    public function setUp()
+    public function testButtonDisplayedWithoutFacebookConnect()
     {
-        /* Setup Routine */
+        $this->dispatch('/oauth/facebook');
+        $this->assertQuery('a.fb_button');
+        $this->assertQuery('span.fb_button_text');
+        $this->assertQueryContentContains('span.fb_button_text', 'Login with Facebook');
     }
-
-    public function tearDown()
-    {
-        /* Tear Down Routine */
-    }
-
-
 }
 
