@@ -31,5 +31,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->navigation($navigation);
         return $view;
     }
+    
+    protected function _initTranslate()
+    {
+        $translate = new Zend_Translate(array (
+            'adapter' => 'csv',
+            'content' => APPLICATION_PATH . '/data/lang',
+            'scan'    => Zend_Translate::LOCALE_DIRECTORY,
+            'delimiter' => ',',
+        ));
+        Zend_Registry::set('Zend_Translate', $translate);
+        return $translate;
+    }
 }
 
