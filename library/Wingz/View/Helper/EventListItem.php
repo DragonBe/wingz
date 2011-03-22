@@ -12,21 +12,36 @@ class Wingz_View_Helper_EventListItem extends Zend_View_Helper_Abstract
     {
         $html = array ();
         $html[] = '<div class="eventBox">';
-        $html[] = sprintf('<h2 class="eventTitle">%s</h2>',
-            $this->view->escape($event->getTitle()));
-        $html[] = '<div class="eventAbstract">';
-        $html[] = '<div class="eventDescription">';
-        $html[] = sprintf('  <p>%s</p>', 
+        if (null !== $event->getUrl()) {
+            $html[] = sprintf('  <h2 class="eventTitle"><a href="%s" title="%s">%s</a></h2>',
+                $this->view->escape($event->getUrl()),
+                $this->view->escape($event->getTitle()),
+                $this->view->escape($event->getTitle()));
+        } else {
+            $html[] = sprintf('  <h2 class="eventTitle">%s</h2>',
+                $this->view->escape($event->getTitle()));
+        }
+        $html[] = '  <div class="eventAbstract">';
+        $html[] = '    <div class="eventDescription">';
+        $html[] = sprintf('      <p>%s</p>', 
             nl2br($this->view->escape($event->getAbstract())));
-        $html[] = '  <span class="eventImage">';
-        $html[] = sprintf('    <img src="%s" width="%d" height="%d" alt="%s" class="eventIcon"/>',
-            $event->getLogo()->getUrl(),
-            $event->getLogo()->getWidth(),
-            $event->getLogo()->getHeight(),
-            $this->view->escape($event->getHashtag()));
-        $html[] = '  </span>';
+        if (null !== $event->getLogo()->getUrl()) {
+            $html[] = '      <span class="eventImage">';
+            $html[] = sprintf('        <img src="%s" width="%d" height="%d" alt="%s" class="eventIcon"/>',
+                $event->getLogo()->getUrl(),
+                $event->getLogo()->getWidth(),
+                $event->getLogo()->getHeight(),
+                $this->view->escape($event->getHashtag()));
+            $html[] = '      </span>';
+        }
+        $html[] = '    </div>';
+        $html[] = '  </div>';
+        $html[] = '  <div class="clear">&nbsp;</div>';
+        $html[] = sprintf('  <div class="eventHashtag">Tagged as <a href="%s" title="%s">%s</a></div>',
+            'http://hashtags.org/' . $event->getHashtag(),
+            $event->getHashtag(),
+            $event->getHashtag());
         $html[] = '</div>';
-        $html[] = '<div class="clear">&nbsp;</div>';
         $html[] = '';
         return implode(PHP_EOL, $html);
     }

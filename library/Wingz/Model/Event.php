@@ -41,6 +41,15 @@ class Wingz_Model_Event implements Wingz_Model_EventInterface
      */
     protected $_hashtag;
     /**
+     * @var 	string Url of the event
+     */
+    protected $_url;
+    
+    public function __construct()
+    {
+        $this->setLogo(new Wingz_Model_EventLogo());
+    }
+    /**
      * (non-PHPdoc)
      * @see 	Wingz_Model_EventInterface::setTitle()
      * @return	Wingz_Model_Event
@@ -127,6 +136,7 @@ class Wingz_Model_Event implements Wingz_Model_EventInterface
      */
     public function setHashtag($hashtag)
     {
+        $hashtag = str_replace('#', '', $hashtag);
         $this->_hashtag = (string) $hashtag;
         return $this;
     }
@@ -138,5 +148,25 @@ class Wingz_Model_Event implements Wingz_Model_EventInterface
     public function getHashtag()
     {
         return $this->_hashtag;
+    }
+    /**
+     * Sets the link to the event
+     * 
+     * @param 	string $url
+     * @return	Wingz_Model_Event
+     */
+    public function setUrl($url)
+    {
+        $this->_url = (string) $url;
+        return $this;
+    }
+    /**
+     * Retrieve the link of the event
+     * 
+     * @return	string
+     */
+    public function getUrl()
+    {
+        return $this->_url;
     }
 }
