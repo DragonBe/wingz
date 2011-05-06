@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<response>
+    <item>
+        <event_name>Zend/PHP Conference &amp; Expo 2008</event_name>
+        <event_start>1221436800</event_start>
+        <event_end>1221782399</event_end>
+        <event_lat></event_lat>
+        <event_long></event_long>
+        <ID>8</ID>
+        <event_loc>San Jose, CA</event_loc>
+        <event_desc>Zend's yearly PHP conference and Expo held in San Jose, California</event_desc>
+        <active>1</active>
+        <event_stub></event_stub>
+        <event_icon>zendconexpo2008.gif</event_icon>
+        <pending></pending>
+        <event_hashtag>#zendcon08, #zendcon</event_hashtag>
+        <event_href>http://www.zendcon.com/ZendCon08/public/content/home</event_href>
+        <event_cfp_start></event_cfp_start>
+        <event_cfp_end></event_cfp_end>
+        <event_voting></event_voting>
+        <private></private>
+        <event_tz_cont></event_tz_cont>
+        <event_tz_place></event_tz_place>
+        <event_contact_name></event_contact_name>
+        <event_contact_email></event_contact_email>
+        <event_cfp_url></event_cfp_url>
+        <allow_comments>0</allow_comments>
+        <num_attend>13</num_attend>
+        <num_comments>0</num_comments>
+        <now/>
+        <timezoneString>/</timezoneString>
+        <tracks/>
+    </item>
+</response>

@@ -10,46 +10,111 @@
  * @link        http://creativecommons.org/licenses/by-sa/3.0/
  * @category	Wingz
  */
+
+/**
+ * Wingz_Service_Joindin
+ * 
+ * The base class for interacting with the joindin api.
+ * 
+ * @package		Wingz_Service
+ * @subpackage	Wingz_Service_Joindin
+ * @link		http://joind.in/api
+ */
 class Wingz_Service_Joindin
 {
-    const JOINDIN_API_URI = 'http://joind.in/api';
-    const JOINDIN_OUTPUT_JSON = 'json';
-    const JOINDIN_OUTPUT_XML = 'xml';
+    const JOINDIN_API_BASE = 'http://joind.in/api';
+    const JOINDIN_DEF_TYPE = 'xml';
+    const JOINDIN_OUT_XML  = 'xml';
+    const JOINDIN_OUT_JSON = 'json';
     
     /**
-     * @var 	string The username used on joindin
+     * @var 	Zend_Http_Client A client to connect with Joind.in
+     */
+    protected $_client;
+    /**
+     * @var 	string The username to connect to Joind.in
      */
     protected $_username;
     /**
-     * @var 	string The password used on joindin
+     * @var 	string The password to connect to Joind.in
      */
     protected $_password;
     /**
-     * @var 	string The desired output
+     * @var 	string The output type of request
      */
-    protected $_output = 'json';
+    protected $_output;
     /**
      * @var 	SimpleXMLElement
      */
-    protected $_requestBody;
+    protected $_message;
     /**
-     * @var 	Zend_Http_Client
+     * @var 	Wingz_Service_Joindin_Site
      */
-    protected $_client;
-    
-    public function __construct($username = null, $password = null)
+    protected $_site;
+    /**
+     * @var 	Wingz_Service_Joindin_Event
+     */
+    protected $_event;
+    /**
+     * @var 	Wingz_Service_Joindin_Talk
+     */
+    protected $_talk;
+    /**
+     * @var 	Wingz_Service_Joindin_User
+     */
+    protected $_user;
+    /**
+     * @var 	Wingz_Service_Joindin_Comment
+     */
+    protected $_comment;
+    /**
+     * Constructor for this joindin class
+     * 
+     * @param 	null|string $username 
+     * @param 	null|string $password
+     * @param 	string $output
+     */
+    public function __construct($username = null, $password = null, $output = self::JOINDIN_DEF_TYPE)
     {
-        $this->setRequestBody(new SimpleXMLElement('<request></request>'));
-        $this->setClient(new Zend_Http_Client(self::JOINDIN_API_URI));
         if (null !== $username) {
             $this->setUsername($username);
         }
         if (null !== $password) {
             $this->setPassword($password);
         }
+        $this->setOutput($output);
+        $this->setMessage(new SimpleXMLElement('<request></request>'));
+        $this->_site = new Wingz_Service_Joindin_Site();
+        $this->_event = new Wingz_Service_Joindin_Event();
+        $this->_talk = new Wingz_Service_Joindin_Talk();
+        $this->_user = new Wingz_Service_Joindin_User();
+        $this->_comment = new Wingz_Service_Joindin_Comment();
     }
     /**
-     * Sets the joindin username for this class
+     * Sets the HTTP client
+     * 
+     * @param 	Zend_Http_Client $client
+     * @return	Wingz_Service_Joindin
+     */
+    public function setClient(Zend_Http_Client $client)
+    {
+        $this->_client = $client;
+        return $this;
+    }
+    /**
+     * Retrieves the HTTP client
+     * 
+     * @return	Zend_Http_Client
+     */
+    public function getClient()
+    {
+        if (null === $this->_client) {
+            $this->_client = new Zend_Http_Client();
+        }
+        return $this->_client;
+    }
+    /**
+     * Sets the username for this joindin
      * 
      * @param 	string $username
      * @return	Wingz_Service_Joindin
@@ -60,16 +125,19 @@ class Wingz_Service_Joindin
         return $this;
     }
     /**
-     * Retrieves the joindin username from this class
+     * Retrieves the username from this joindin class
      * 
      * @return	string
      */
     public function getUsername()
     {
+        if (null === $this->_username) {
+            throw new Wingz_Service_Joindin_Exception('Username is not set');
+        }
         return $this->_username;
     }
     /**
-     * Sets the joindin password for this class
+     * Sets the password for this joindin account
      * 
      * @param 	string $password
      * @return	Wingz_Service_Joindin
@@ -80,7 +148,7 @@ class Wingz_Service_Joindin
         return $this;
     }
     /**
-     * Retrieves the joindin password from this class
+     * Retrieves the password from this joindin account
      * 
      * @return	string
      */
@@ -89,23 +157,22 @@ class Wingz_Service_Joindin
         return $this->_password;
     }
     /**
-     * Sets the output for retrieving data from joindin
+     * Sets the output format of the joindin webservice, either xml or json
      * 
-     * @param 	string $output Supported formats are 'xml' or 'json'
-     * @throws 	Wingz_Service_Joindin_Exception
+     * @param 	string $output
      * @return	Wingz_Service_Joindin
      */
     public function setOutput($output)
     {
-        $supportedOutputs = array ('xml', 'json');
-        if (!in_array($output, $supportedOutputs)) {
-            throw new Wingz_Service_Joindin_Exception('Unsupported output format provided');
+        $types = array (self::JOINDIN_OUT_JSON, self::JOINDIN_OUT_XML);
+        if (!in_array($output, $types)) {
+            $output = self::JOINDIN_DEF_TYPE;
         }
         $this->_output = (string) $output;
         return $this;
     }
     /**
-     * Retrieves the desired output format for joindin data retrieval
+     * Retrieves the output format for the joindin webservice
      * 
      * @return	string
      */
@@ -114,96 +181,101 @@ class Wingz_Service_Joindin
         return $this->_output;
     }
     /**
-     * Sets the request body
+     * Sets the request message to be send to the joindin webservice
      * 
-     * @param SimpleXMLElement $xml
+     * @param 	SimpleXmlElement $message
      * @return	Wingz_Service_Joindin
      */
-    public function setRequestBody(SimpleXMLElement $xml)
+    public function setMessage(SimpleXmlElement $message)
     {
-        $this->_requestBody = $xml;
-        return $this;
+        $this->_message = $message;
     }
     /**
-     * Retrievest the requestbody
+     * Retrieves the request message for the joindin webservice
      * 
      * @return	SimpleXMLElement
-     */
-    public function getRequestBody()
-    {
-        return $this->_requestBody;
-    }
-    /**
-     * Sets the client adapter for calling the service
-     * 
-     * @param 	Zend_Http_Client $client
-     * @return	Wingz_Service_Joindin
-     */
-    public function setClient(Zend_Http_Client $client)
-    {
-        $client->setMethod(Zend_Http_Client::PUT);
-        if ('xml' === $this->getOutput()) {
-            $client->setHeaders('Content-Type', 'text/xml');
-        }
-        $this->_client = $client;
-        return $this;
-    }
-    /**
-     * Retrieves the client adapter for calling joindin service
-     * 
-     * @return	Zend_Http_Client
-     */
-    public function getClient()
-    {
-        return $this->_client;
-    }
-    /**
-     * Makes the request to joindin and returns the resultset
-     *
      * @throws	Wingz_Service_Joindin_Exception
-     * @return	string Either an xml or json response from joindin
      */
-    public function makeRequest()
+    public function getMessage()
     {
-        $data = $this->getRequestBody();
-        if ($data instanceof SimpleXMLElement) {
-            $data = $data->asXML();
+        if (null === $this->_message) {
+            throw new Wingz_Service_Joindin_Exception('Request message is not set');
         }
-        $this->getClient()->setRawData($data);
-        $response = $this->getClient()->request();
-        if (!$response->isSuccessful()) {
-            throw new Wingz_Service_Joindin_Exception('Failure requesting service');
-        }
-        return $response->getBody();
+        return $this->_message;
     }
     /**
-     * Get a listing of events
+     * Prepares the user part of joindin webservice
      * 
-     * @return	Wingz_Service_Joindin_Model_Events
-     * @fix	    Issue reported by Maarten on phpbnl11
+     * @return	Wingz_Service_Joindin_User
      */
-    public function getEvents($itemCount = 0)
+    public function user()
     {
-        $joindIn = new Wingz_Service_Joindin();
-        $joindIn->setOutput(Wingz_Service_Joindin::JOINDIN_OUTPUT_XML);
-        $response = $joindIn->event()->getList();
-        return new Wingz_Service_Joindin_Model_Events(
-            new SimpleXMLElement($response), $itemCount);
-    } 
-    
-    public function __call($method, $args)
+        $this->_user->setJoindin($this);
+        return $this->_user;
+    }
+    /**
+     * Prepares the site part of joindin webservice
+     * 
+     * @return	Wingz_Service_Joindin_Site
+     */
+    public function site()
     {
-        $service = null;
-        switch ($method) {
-            case 'site':
-                $service = new Wingz_Service_Joindin_Site($this);
-                break;
-            case 'event':
-                $service = new Wingz_Service_Joindin_Event($this);
-                break;
-            default:
-                break;
+        $this->_site->setJoindin($this);
+        return $this->_site;
+    }
+    /**
+     * Prepares the event part of joindin webservice
+     * 
+     * @return	Wingz_Service_Joindin_Event
+     */
+    public function event()
+    {
+        $this->_event->setJoindin($this);
+        return $this->_event;
+    }
+    /**
+     * Prepares the talk part of joindin webservice
+     * 
+     * @return	Wingz_Service_Joindin_Talk
+     */
+    public function talk()
+    {
+        $this->_talk->setJoindin($this);
+        return $this->_talk;
+    }
+    /**
+     * Prepares the comment part of joindin webservice
+     * 
+     * @return	Wingz_Service_Joindin_Comment
+     */
+    public function comment()
+    {
+        $this->_comment->setJoindin($this);
+        return $this->_comment;
+    }
+    /**
+     * Connects to the joindin webservice and executes provided message to the
+     * joindin endpoint
+     * 
+     * @param 	SimpleXMLElement $message
+     * @param 	string $apiEnd
+     * @throws	Wingz_Service_Joindin_Exception
+     * @return	Zend_Http_Response
+     */
+    public function connect(SimpleXMLElement $message, $apiEnd = null)
+    {
+        if (null === $apiEnd) {
+            throw new Wingz_Service_Joindin_Exception('API end point not set');
         }
-        return $service;
+        $this->getClient()
+             ->setUri(self::JOINDIN_API_BASE . $apiEnd)
+             ->setMethod(Zend_Http_Client::POST);
+        if (self::JOINDIN_OUT_XML === $this->getOutput()) {
+             $this->getClient()
+                  ->setHeaders('Content-Type', 'text/xml')
+                  ->setRawData($message->asXML());
+        }
+        $request = $this->getClient()->request();
+        return $this->getClient()->getLastResponse();
     }
 }

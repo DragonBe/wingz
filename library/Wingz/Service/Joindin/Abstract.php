@@ -1,51 +1,17 @@
 <?php
-/**
- * Wingz: Write PHP, deploy anywhere
- * 
- * Wingz is an example application that uses a fully working Zend Framework
- * application that can run on Linux w/ Apache, Microsoft Windows w/ IIS and
- * on Microsoft Windows Azure w/ IIS.
- * 
- * @license		CreativeCommons-Attribution-ShareAlike
- * @link        http://creativecommons.org/licenses/by-sa/3.0/
- * @category	Wingz
- */
 abstract class Wingz_Service_Joindin_Abstract
 {
     /**
-     * @var 	Wingz_Service_Joindin
-     */
-    protected $_joindin;
-    
-    /**
-     * Constructor for the various service layers of joindin
-     * 
-     * @param null|Wingz_Service_Joindin $joindin
-     */
-    public function __construct($joindin = null)
-    {
-        if (null !== $joindin && $joindin instanceof Wingz_Service_Joindin) {
-            $this->setJoindin($joindin);
-        }
-    }
-    /**
-     * Attaches the main joindin class to this service
+     * Sets the joindin instance
      * 
      * @param 	Wingz_Service_Joindin $joindin
-     * @return	Wingz_Service_Joindin_Site
+     * @return	Wingz_Service_Joindin_Abstract
      */
-    public function setJoindin(Wingz_Service_Joindin $joindin)
-    {
-        $this->_joindin = $joindin;
-        return $this;
-    }
+    abstract public function setJoindin(Wingz_Service_Joindin $joindin);
     /**
-     * Retrieves the main joindin class from this service
+     * Retrieves the joindin instance
      * 
      * @return	Wingz_Service_Joindin
      */
-    public function getJoindin()
-    {
-        return $this->_joindin;
-    }
+    abstract public function getJoindin();
 }

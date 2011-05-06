@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<ServiceDefinition name="myaspapp" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition"> 
+    <WebRole name="MyPHP" vmsize="Small" enableNativeCodeExecution="true">
+        <Sites>
+              <Site name="Web">
+                    <Bindings>
+                      <Binding name="HttpIn" endpointName="HttpIn" />
+                    </Bindings>
+          </Site>
+        </Sites>
+
+    <InputEndpoints> 
+    <!-- Must use port 80 for http and port 443 for https when running in the cloud --> 
+           <InputEndpoint name="HttpIn" protocol="http" port="80" /> 
+    </InputEndpoints> 
+    <ConfigurationSettings/> 
+    <Startup>
+        <Task commandLine="InstallPHP.cmd" executionContext="elevated" taskType="simple"/>
+        <Task commandLine="CopyFiles.cmd" executionContext="elevated" taskType="simple"/>
+    </Startup>
+    </WebRole> 
+</ServiceDefinition>

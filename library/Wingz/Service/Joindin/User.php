@@ -1,7 +1,7 @@
 <?php
-class Wingz_Service_Joindin_Site extends Wingz_Service_Joindin_Abstract
+class Wingz_Service_Joindin_User extends Wingz_Service_Joindin_Abstract
 {
-    const JOINDIN_API_END = '/site';
+    const JOINDIN_API_END = '/user';
     /**
      * @var 	Wingz_Service_Joindin
      */
@@ -23,28 +23,29 @@ class Wingz_Service_Joindin_Site extends Wingz_Service_Joindin_Abstract
      * 
      * @see 	Wingz_Service_Joindin_Abstract::getJoindin()
      * @return	Wingz_Service_Joindin
+     * @throws	Wingz_Service_Joindin_Exception
      */
     public function getJoindin()
     {
+        if (null === $this->_joindin || !$this->_joindin instanceof Wingz_Service_Joindin) {
+            throw new Wingz_Service_Joindin_Exception('Joindin instance not set yet');
+        }
         return $this->_joindin;
     }
-    /**
-     * Call the joindin status RPC
-     * 
-     * @param 	null|string $test
-     * @return	string
-     */
-    public function getStatus($test = null)
+    public function getDetail()
     {
-        $status = $this->getJoindin()
+        if (null === $this->getJoindin()->getUsername()) {
+            throw new Wingz_Service_Joindin_Exception('Required username missing');
+        }
+        if (null === $this->getJoindin()->getPassword()) {
+            throw new Wingz_Service_Joindin_Exception('Required password missing');
+        }
+        $detail = $this->getJoindin()
                        ->getMessage()
                        ->addChild('action');
-        $status->addAttribute('type', 'status');
-        $status->addAttribute('output', $this->getJoindin()->getOutput());
-        if (null !== $test) {
-            $status->addChild('test_string', $test);
-        }
-        
+        $detail->addAttribute('type', 'getdetail');
+        $detail->addAttribute('output', $this->getJoindin()->getOutput());
+        $detail->addChild('uid', $this->getJoindin()->getUsername());
         $response = $this->getJoindin()->connect(
             $this->getJoindin()->getMessage(), self::JOINDIN_API_END);
         if ($response->isError()) {
