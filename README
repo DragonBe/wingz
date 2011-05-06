@@ -11,8 +11,10 @@ Primary tasks here:
 
 Website
 =======
-Wingz is running on http://www.wingz.cc which will redirect you to the
-proper http://wingz.cc.
+We currently have Wingz running on:
+- http://wingz.cc: a linux server with Apache and PHP
+- http://wingz.it: a windows server with IIS and PHP
+- http://wingz.be: a windows azure instance with IIS and PHP
 
 Bug reporting
 =============
