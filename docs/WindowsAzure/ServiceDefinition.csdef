@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 
-<ServiceDefinition name="myaspapp" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition"> 
-    <WebRole name="MyPHP" vmsize="Small" enableNativeCodeExecution="true">
+<ServiceDefinition name="WingzOnAzureProject" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition"> 
+    <WebRole name="WingzOnAzure" vmsize="Small" enableNativeCodeExecution="true">
         <Sites>
               <Site name="Web">
                     <Bindings>
