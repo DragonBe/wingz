@@ -130,7 +130,24 @@ class Wingz_Service_Joindin_Event extends Wingz_Service_Joindin_Abstract
         if ($response->isError()) {
             throw new Wingz_Service_Joindin_Exception($response->getMessage());
         }
-        return $response->getBody();
+        $return = $response->getBody();
+        if (null !== $count) {
+            $xml = simplexml_load_string($return);
+            $newXml = '<response>';
+            if (isset ($xml->item)) {
+                $max = $count < count($xml->item) ? $count : count($xml->item);
+                $idx = 0;
+                foreach ($xml->item as $item) {
+                    if ($max > $idx) {
+                        $newXml .= $item->asXML();
+                        $idx++;
+                    }
+                }
+                $newXml .= '</response>';
+                $return = $newXml;
+            }
+        }
+        return $return;
     }
     /**
      * Get a listing of talks for a particular event, provided with the ID of

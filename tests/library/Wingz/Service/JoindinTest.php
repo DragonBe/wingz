@@ -2,7 +2,7 @@
 class Wingz_Service_JoindinTest extends PHPUnit_Framework_TestCase
 {
     protected $_joindin;
-    protected $_live = true;
+    protected $_live = false;
     
     protected function setUp()
     {
@@ -132,6 +132,21 @@ EOL;
             dirname(__FILE__) . '/_files/eventlisthot.xml', 
             $this->_joindin->event()->getListing(
                 Wingz_Service_Joindin_Event::LISTING_HOT));
+        return $response;
+    }
+    /**
+     * @depends testJoindinListEvents
+     */
+    public function testJoininListEventsWithCount($response)
+    {
+        $count = 2;
+        if (false === $this->_live) {
+            $this->_joindin->getClient()->getAdapter()->setResponse($response);
+        }
+        $data = $this->_joindin->event()->getListing(
+            Wingz_Service_Joindin_Event::LISTING_UPCOMING, $count);
+        $events = simplexml_load_string($data);
+        $this->assertSame($count, count($events->item));
     }
     
     public function testJoindinGetEventDetail()
@@ -184,8 +199,61 @@ EOL;
     }
     public function testJoindinGetEventTalks()
     {
+        $response = <<<EOL
+HTTP/1.1 200 OK
+Content-type: text/xml
+
+<?xml version="1.0"?>
+<response>
+    <item>
+        <talk_title>Client-side Javascript Unit Testing</talk_title>
+        <speaker>Tom Van Herreweghe</speaker>
+        <slides_link>http://www.slideshare.net/Miljar/javascript-unit-testting-phpbenelux-20110504</slides_link>
+        <date_given>1304530200</date_given>
+        <event_id>672</event_id>
+        <ID>3380</ID>
+        <talk_desc>As a PHP developer, you've probably had to deal with Javascript at some point in your career. Some of
+            the Javascript code you've written may even have been pretty complex. What happens if you need to make some
+            changes? Will it break existing functionality? The only way to really know if everything is still working,
+            is by unit testing your Javascript. This talk will introduce you to QUnit for creating Javascript unit tests
+            and JsTestDriver for automating these tests.</talk_desc>
+        <event_tz_cont>Europe</event_tz_cont>
+        <event_tz_place>Brussels</event_tz_place>
+        <event_start>1304460000</event_start>
+        <event_end>1304546399</event_end>
+        <lang>us</lang>
+        <rank>5</rank>
+        <comment_count>6</comment_count>
+        <tcid>Talk</tcid>
+        <tracks></tracks>
+    </item>
+    <item>
+        <talk_title>Unit Testing with Zend Framework</talk_title>
+        <speaker>Michelangelo van Dam</speaker>
+        <slides_link>http://slidesha.re/jyVEtv</slides_link>
+        <date_given>1304533800</date_given>
+        <event_id>672</event_id>
+        <ID>3381</ID>
+        <talk_desc>In 2010, I told everyone how to start unit testing Zend Framework applications. In 2011, let&#x2019;s
+            take this a step further by testing services, work flows and performance. Looking to raise the bar on
+            quality? Let this talk be the push you need to improve your Zend Framework projects.</talk_desc>
+        <event_tz_cont>Europe</event_tz_cont>
+        <event_tz_place>Brussels</event_tz_place>
+        <event_start>1304460000</event_start>
+        <event_end>1304546399</event_end>
+        <lang>us</lang>
+        <rank>5</rank>
+        <comment_count>6</comment_count>
+        <tcid>Talk</tcid>
+        <tracks></tracks>
+    </item>
+</response>
+EOL;
+        if (false === $this->_live) {
+            $this->_joindin->getClient()->getAdapter()->setResponse($response);
+        }
         $this->assertXmlStringEqualsXmlFile(
             dirname(__FILE__) . '/_files/eventtalks.xml',
-                $this->_joindin->event()->getTalks(8));
+                $this->_joindin->event()->getTalks(672));
     }
 }
