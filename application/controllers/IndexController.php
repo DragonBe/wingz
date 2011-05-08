@@ -44,8 +44,21 @@ class IndexController extends Zend_Controller_Action
         Zend_Debug::dump($locales[$lang], 'locale');
     }
 
+    public function eventAction()
+    {
+        $id = $this->getRequest()->getParam('id', null);
+        if (null === $id) {
+            return $this->_helper->redirector('index');
+        }
+        $joindin = new Wingz_Service_Joindin();
+        $event = $joindin->event()->getDetail($id);
+        
+    }
+
 
 }
+
+
 
 
 

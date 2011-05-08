@@ -32,5 +32,6 @@
                 <add value="index.html" />
             </files>
         </defaultDocument>
+        <httpErrors errorMode=”Detailed” />
     </system.webServer>
 </configuration>
