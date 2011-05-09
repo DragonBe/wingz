@@ -14,7 +14,8 @@ Website
 We currently have Wingz running on:
 - http://wingz.cc: a linux server with Apache and PHP
 - http://wingz.it: a windows server with IIS and PHP
-- http://wingz.be: a windows azure instance with IIS and PHP
+- http://wingz.be: a windows server with IIS and PHP
+- http://wingz.co: a windows azure instance (cname for wingzonazure.cloudapp.net)
 
 Bug reporting
 =============
