@@ -55,7 +55,7 @@ class IndexController extends Zend_Controller_Action
         $xml = simplexml_load_string($event);
 //        $this->getResponse()->setHeader('Content-type', 'text/xml');
 //        $this->_helper->layout()->disableLayout();
-//        $this->_helper->viewRenderer->setNoRender(true);
+//        Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->setNoRender(true);
 //        echo $xml->asXML();
         $this->view->event = $xml;
     }

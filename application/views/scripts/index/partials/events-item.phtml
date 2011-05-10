@@ -1,6 +1,6 @@
 
 <div class="eventBox">
-<h2 class="eventTitle"><a href="<?php echo $this->url(array (
+<h2 class="eventTitle"><?php echo $this->escape(date('Y-m-d', (int) $this->event_start))?>&nbsp;<a href="<?php echo $this->url(array (
     'controller' => 'index',
     'action' => 'event',
     'id' => $this->escape($this->ID),
