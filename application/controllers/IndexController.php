@@ -51,8 +51,13 @@ class IndexController extends Zend_Controller_Action
             return $this->_helper->redirector('index');
         }
         $joindin = new Wingz_Service_Joindin();
-        $event = $joindin->event()->getDetail($id);
-        
+        $event = $joindin->event()->getEventDetail($id);
+        $xml = simplexml_load_string($event);
+//        $this->getResponse()->setHeader('Content-type', 'text/xml');
+//        $this->_helper->layout()->disableLayout();
+//        $this->_helper->viewRenderer->setNoRender(true);
+//        echo $xml->asXML();
+        $this->view->event = $xml;
     }
 
 
