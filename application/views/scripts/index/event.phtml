@@ -1,0 +1,11 @@
+<?php $this->headTitle($this->escape($this->event->item->event_name))
+           ->headTitle($this->escape(date('Y-m-d H:i', (int) $this->event->item->event_start)))?>
+<h1><?php echo $this->escape($this->event->item->event_name)?></h1>
+<cite>This event is scheduled: <?php echo $this->escape(date('Y-m-d H:i', (int) $this->event->item->event_start)) ?></cite>
+<p><?php echo nl2br($this->escape($this->event->item->event_desc))?></p>
+
+<div id="tabs">
+    <div id="talks"></div>
+    <div id="comments"></div>
+    <div id="slides"></div>
+</div>

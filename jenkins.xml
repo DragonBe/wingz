@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Continuous Integration" default="build">
+
+    <property name="basedir" value="${project.basedir}"/>
+
+    <fileset id="php-files" dir="./">
+        <include name="**/*.php"/>
+        <exclude name="**/.svn**"/>
+        <exclude name="**/*.phtml"/>
+        <exclude name="library/Zend/**"/>
+        <exclude name="library/ZendX/**"/>
+        <exclude name="library/Macq/**"/>
+        <exclude name="scripts/**"/>
+        <exclude name="tests/**"/>
+        <exclude name="docs/**"/>
+    </fileset>
+
+    <target name="clean" description="Cleaning up artifacts directory">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/statsvn"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+        <delete dir="${basedir}/build/cache"/>
+
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/statsvn"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+        <mkdir dir="${basedir}/build/cache"/>
+    </target>
+
+    <target name="phpunit" description="Running unit tests and generates code-coverage reports">
+        <exec command="phpunit
+            --log-junit ${basedir}/build/logs/junit.xml
+            --coverage-clover ${basedir}/build/logs/clover.xml
+            --coverage-html ${basedir}/build/coverage"
+            dir="${basedir}/tests"/>
+    </target>
+
+    <target name="pdepend" description="Calculate dependencies of code base">
+        <exec command="pdepend
+            --configuration=${basedir}/pdepend.xml
+            --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
+            --jdepend-xml=${basedir}/build/logs/jdepend.xml
+            --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+            --suffix=php
+            --ignore=library/Zend,library/ZendX,tests,docs,scripts ${basedir}"/>
+    </target>
+
+    <target name="phpmd" description="Generate pmd.xml using PHPMD">
+        <phpmd>
+            <fileset refid="php-files" />
+            <formatter type="xml" outfile="${basedir}/build/logs/pmd.xml"/>
+        </phpmd>
+    </target>
+
+    <target name="phpcpd" description="Detection of copy/paste">
+        <exec command="phpcpd
+            --log-pmd ${basedir}/build/logs/pmd-cpd.xml
+            --exclude library/Zend
+            --exclude library/ZendX
+            --exclude tests
+            --exclude docs
+            --exclude scripts
+            --suffixes php
+            ${basedir}"/>
+    </target>
+
+    <target name="phploc" description="Generate phploc.csv">
+        <exec command="phploc
+            --log-csv ${basedir}/build/logs/phploc.csv ${basedir}"/>
+    </target>
+
+    <target name="phpcs" description="Checking our coding standards">
+        <exec command="phpcs
+            --report=checkstyle
+            --report-file=${basedir}/build/logs/checkstyle.xml
+            --standard=Zend
+            --ignore=library/Zend,library/ZendX,tests,docs,scripts
+            --extensions=php
+            ${basedir}"/>
+    </target>
+
+    <target name="phpdoc" description="Generate API documentation">
+        <phpdoc
+            title="iCar Manager API Documentation"
+            target="${basedir}/build/api"
+            output="HTML:frames:earthli"
+            quiet="true">
+            <fileset refid="php-files" />
+        </phpdoc>
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec command="phpcb
+            --ignore library/Zend,library/ZendX,tests,docs,scripts
+            --log ${basedir}/build/logs
+            --source ${basedir}
+            --output ${basedir}/build/code-browser"/>
+    </target>
+
+    <target name="statsvn" description="Subversion statistics">
+        <exec command="svn log -v
+            --xml
+            --username jenkins
+            --password G0f0Rz3R0
+            --no-auth-cache
+            --non-interactive
+            --trust-server-cert  > ${basedir}/build/logs/statsvn.log"/>
+        <exec command="java -jar /usr/bin/statsvn.jar ${basedir}/build/logs/statsvn.log ${basedir} -output-dir ${basedir}/build/statsvn"/>
+    </target>
+
+    <target name="build" depends="clean, phpunit, phpdoc"/>
+</project>
