@@ -3,6 +3,7 @@
 <project name="Continuous Integration" default="build">
 
     <property name="basedir" value="${project.basedir}"/>
+    <property file="build.properties"/>
 
     <fileset id="php-files" dir="./">
         <include name="**/*.php"/>
@@ -107,13 +108,13 @@
     <target name="statsvn" description="Subversion statistics">
         <exec command="svn log -v
             --xml
-            --username jenkins
-            --password G0f0Rz3R0
+            --username ${jenkins.username}
+            --password ${jenkins.password}
             --no-auth-cache
             --non-interactive
             --trust-server-cert  > ${basedir}/build/logs/statsvn.log"/>
         <exec command="java -jar /usr/bin/statsvn.jar ${basedir}/build/logs/statsvn.log ${basedir} -output-dir ${basedir}/build/statsvn"/>
     </target>
 
-    <target name="build" depends="clean, phpunit, phpdoc, jdepend, phpmd, phpcs, phploc, phpcpd"/>
+    <target name="build" depends="clean, phpunit, phpdoc, pdepend, phpmd, phpcs, phploc, phpcpd"/>
 </project>
