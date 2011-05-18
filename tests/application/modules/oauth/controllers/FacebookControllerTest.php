@@ -1,5 +1,5 @@
 <?php
-
+require_once TEST_PATH . '/ControllerTestCase.php';
 class FacebookControllerTest extends ControllerTestCase
 {
     public function testButtonDisplayedWithoutFacebookConnect()
