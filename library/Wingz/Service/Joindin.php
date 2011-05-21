@@ -22,6 +22,7 @@
  */
 class Wingz_Service_Joindin
 {
+    const JOINDIN_WEB_BASE = 'http://joind.in';
     const JOINDIN_API_BASE = 'http://joind.in/api';
     const JOINDIN_DEF_TYPE = 'xml';
     const JOINDIN_OUT_XML  = 'xml';

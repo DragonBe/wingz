@@ -1,6 +1,6 @@
 <?php $this->headTitle($this->escape($this->event->item->event_name))
            ->headTitle($this->escape(date('Y-m-d H:i', (int) $this->event->item->event_start)))?>
-<?php $this->headLink->appendStylesheet($this->baseUrl('/css/events.css'))?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/css/events.css'))?>
 
 <div id="outerContainer">
 
@@ -11,6 +11,19 @@
 </div>
 
 <div id="rightContainer" class="rightBlock oneBlock">
+
+<h2>Grab the link</h2>
+<div id="qrlink" class="center">
+<?php echo $this->qrcode(sprintf('%s/event/id/%d',
+    Wingz_Service_Joindin::JOINDIN_WEB_BASE,
+    $this->escape($this->event->item->ID))) ?><br/>
+<a href="<?php echo sprintf('%s/event/id/%d',
+    Wingz_Service_Joindin::JOINDIN_WEB_BASE,
+    $this->escape($this->event->item->ID)) ?>"
+    ><?php echo sprintf('%s/event/id/%d',
+    Wingz_Service_Joindin::JOINDIN_WEB_BASE,
+    $this->escape($this->event->item->ID)) ?></a>
+</div>
 
 </div>
 
