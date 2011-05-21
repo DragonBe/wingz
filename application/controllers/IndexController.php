@@ -16,11 +16,15 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $joindin = new Wingz_Service_Joindin();
-        $events = $joindin->event()->getListing(
-            Wingz_Service_Joindin_Event::LISTING_UPCOMING, 3);
-        $this->view->assign(array (
-            'events' => simplexml_load_string($events),
-        ));
+        try {
+            $events = $joindin->event()->getListing(
+                Wingz_Service_Joindin_Event::LISTING_UPCOMING, 3);
+            $this->view->assign(array (
+                'events' => simplexml_load_string($events),
+            ));
+        } catch (Wingz_Service_Joindin_Exception $e) {
+            $this->view->error = Wingz_Service_Exception::FAIL_MESSAGE;
+        }
     }
 
     public function langAction()

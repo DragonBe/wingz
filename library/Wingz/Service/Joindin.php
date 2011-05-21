@@ -275,7 +275,11 @@ class Wingz_Service_Joindin
                   ->setHeaders('Content-Type', 'text/xml')
                   ->setRawData($message->asXML());
         }
-        $request = $this->getClient()->request();
+        try {
+            $request = $this->getClient()->request();
+        } catch (Zend_Http_Client_Exception $e) {
+            throw new Wingz_Service_Joindin_Exception($e->getMessage());
+        }
         return $this->getClient()->getLastResponse();
     }
 }

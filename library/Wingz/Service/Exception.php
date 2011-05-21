@@ -12,5 +12,6 @@
  */
 class Wingz_Service_Exception extends Wingz_Exception
 {
-    
+    const FAIL_MESSAGE = 'Joind.in is unavailable at this moment and we\'re very
+    sorry for this failure, but these things happen when dealing with services.'; 
 }
