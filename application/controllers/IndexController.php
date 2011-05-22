@@ -24,8 +24,8 @@ Content-Type: text/xml
 {$data}
 EOL;
         $joindin = new Wingz_Service_Joindin();
-        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
-        $joindin->getClient()->getAdapter()->setResponse($response);
+//        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
+//        $joindin->getClient()->getAdapter()->setResponse($response);
         try {
             $events = $joindin->event()->getListing(
                 Wingz_Service_Joindin_Event::LISTING_UPCOMING, 3);
@@ -73,8 +73,8 @@ Content-Type: text/xml
 {$data}
 EOL;
         $joindin = new Wingz_Service_Joindin();
-        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
-        $joindin->getClient()->getAdapter()->setResponse($response);
+//        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
+//        $joindin->getClient()->getAdapter()->setResponse($response);
         $event = $joindin->event()->getEventDetail($id);
         $xml = simplexml_load_string($event);
 //        $this->getResponse()->setHeader('Content-type', 'text/xml');
