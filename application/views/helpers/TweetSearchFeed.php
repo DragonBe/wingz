@@ -26,7 +26,7 @@ class Application_View_Helper_TweetSearchFeed extends Zend_View_Helper_Abstract
         } catch (Zend_Http_Client_Exception $e) {
             // do something else
         }
-        if (!empty ($feed)) {
+        if (!empty ($feed) && $this->view instanceof Zend_View) {
             return $this->view->feedList($feed, self::TWITTER_SEARCH_COUNT);
         }
         return $feed;
