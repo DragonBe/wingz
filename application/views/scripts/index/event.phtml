@@ -25,7 +25,7 @@
     $this->escape($this->event->item->ID)) ?></a>
 </div>
 
-<?php if ('' !== $this->event->item->event_hashtag):?>
+<?php if ('' !== (string) $this->event->item->event_hashtag):?>
 <h2><?php echo $this->escape($this->event->item->event_hashtag)?></h2>
 <div id="tweetEventLink">
 <?php echo $this->tweetSearchFeed($this->event->item->event_hashtag)?>
