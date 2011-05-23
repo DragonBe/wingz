@@ -15,17 +15,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $data = file_get_contents(APPLICATION_PATH 
-            . '/../tests/library/Wingz/Service/Joindin/_files/eventlisthot.xml');
-        $response = <<<EOL
-HTTP/1.1 200 OK
-Content-Type: text/xml
-
-{$data}
-EOL;
         $joindin = new Wingz_Service_Joindin();
-//        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
-//        $joindin->getClient()->getAdapter()->setResponse($response);
         try {
             $events = $joindin->event()->getListing(
                 Wingz_Service_Joindin_Event::LISTING_UPCOMING, 3);
@@ -54,8 +44,6 @@ EOL;
         Zend_Registry::set('Zend_Translate', $translate);
         Zend_Registry::set('Zend_Locale', $lang);
         $this->view->locale = $locales[$lang];
-        Zend_Debug::dump($translate, 'translate');
-        Zend_Debug::dump($locales[$lang], 'locale');
     }
 
     public function eventAction()
@@ -64,23 +52,9 @@ EOL;
         if (null === $id) {
             return $this->_helper->redirector('index');
         }
-        $data = file_get_contents(APPLICATION_PATH 
-            . '/../tests/library/Wingz/Service/Joindin/_files/eventdetail.xml');
-        $response = <<<EOL
-HTTP/1.1 200 OK
-Content-Type: text/xml
-
-{$data}
-EOL;
         $joindin = new Wingz_Service_Joindin();
-//        $joindin->getClient()->setAdapter('Zend_Http_Client_Adapter_Test');
-//        $joindin->getClient()->getAdapter()->setResponse($response);
         $event = $joindin->event()->getEventDetail($id);
         $xml = simplexml_load_string($event);
-//        $this->getResponse()->setHeader('Content-type', 'text/xml');
-//        $this->_helper->layout()->disableLayout();
-//        Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->setNoRender(true);
-//        echo $xml->asXML();
         $this->view->event = $xml;
     }
 
