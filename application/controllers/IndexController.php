@@ -61,7 +61,7 @@ class IndexController extends Zend_Controller_Action
     public function qrcodeAction()
     {
         error_reporting(E_ALL|E_STRICT);
-        ini_set('display_errors', 1);
+        ini_set('display_errors', 0);
         $this->_helper->layout()->disableLayout();
         $data = $this->getRequest()->getParam('data', null);
         $data = urldecode($data);

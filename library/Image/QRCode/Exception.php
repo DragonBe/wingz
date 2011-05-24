@@ -37,7 +37,7 @@
  * Base class for exceptions in PEAR
  */
 
-require_once 'PEAR/Exception.php';
+//require_once 'PEAR/Exception.php';
 
 /**
  * Image_QRCode_Exception
@@ -51,7 +51,7 @@ require_once 'PEAR/Exception.php';
  * @link     http://code.google.com/p/pearqrcode/
  */
 
-class Image_QRCode_Exception extends PEAR_Exception
+class Image_QRCode_Exception extends Exception
 {
 }
 ?>
