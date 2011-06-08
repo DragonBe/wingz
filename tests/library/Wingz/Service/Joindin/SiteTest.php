@@ -46,7 +46,7 @@ EOL;
     
     public function testJoindinResponseReturnsError()
     {
-        $resonse = <<<EOL
+        $response = <<<EOL
 HTTP/1.1 400 Bad Request
 Content-type: text/xml
 
