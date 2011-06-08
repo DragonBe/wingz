@@ -26,7 +26,8 @@
 </div>
 
 <?php if ('' !== (string) $this->event->item->event_hashtag):?>
-<h2><?php echo $this->escape($this->event->item->event_hashtag)?></h2>
+<h2>Mentions</h2>
+<p class="cite"><?php echo $this->hashtagFilter($this->event->item->event_hashtag)?></p>
 <div id="tweetEventLink">
 <?php echo $this->tweetSearchFeed($this->event->item->event_hashtag)?>
 </div>

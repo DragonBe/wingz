@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wingz on azure" default="build">
+
+    <property file="build.properties"/>
+    
+    <fileset dir="." id="files">
+        <include name="application/**"/>
+        <include name="docs/**"/>
+        <include name="public/**"/>
+        <include name="library/Wingz/**"/>
+        <include name="library/Image/**"/>
+        <exclude name="library/Zend/**"/>
+        <exclude name="library/ZendX/**"/>
+        <include name="azure.xml"/>
+        <include name="build.xml"/>
+        <include name="build.properties"/>
+        <include name="index.php"/>
+        <include name="web.config"/>
+        <include name="version.txt"/>
+        <include name="README"/>
+    </fileset>
+
+ 	<!-- windows azure platform settings -->
+    <property name="cmd-cspack" value="${azure.sdk-path}\cspack.exe" override="false"/>
+    <property name="cmd-csrun" value="${azure.sdk-path}\csrun.exe" override="false"/>
+    
+	<target name="prepare-azure" description="Prepare our software to pack for Azure">
+        <property name="prepdir" value="${azure.build-path}"/>
+        <property name="appfolder" value="${prepdir}\${azure.folder}"/>
+        
+        <mkdir dir="${appfolder}"/>
+    
+        <copy todir="${appfolder}" overwrite="true">
+          <fileset refid="files"/>
+        </copy>
+        
+        <copy todir="${prepdir}" overwrite="true">
+          <fileset dir="docs/WindowsAzure">
+            <include name="*.*"/>
+          </fileset>
+        </copy>
+    </target>
+
+  <target name="deploy-devfabric" depends="prepare-azure">
+    <echo msg="Deploying ${phing.project.name}-${version.number} to ${azure-dev}"/>
+    <exec command="&quot;${cmd-cspack}&quot; &quot;${azure.csdef}&quot; /role:${azure.role};${azure.folder}; /sites:${azure.role};Web;${azure.folder} /copyOnly"
+          dir="." />
+    <exec command="&quot;${cmd-csrun}&quot; &quot;${azure.csx}&quot; &quot;${azure.cscfg}&quot; /launchbrowser"
+          dir="." />
+  </target>
+  
+  <target name="deploy-azure" depends="prepare-azure">
+    <echo msg="Deploying ${phing.project.name}-${version.number} to ${azure-prod}"/>
+    <exec command="&quot;${cmd-cspack}&quot; ServiceDefinition.csdef /role:PhpOnAzure.Web;PhpOnAzure.Web /out:PhpOnAzure.cspkg"
+          dir="./bldtmp" />
+    <mkdir dir="./release/${phing.project.name}-${version.number}/azure-prod" />
+    <copy todir="./release/${phing.project.name}-${version.number}/azure-prod" overwrite="true">
+
+      <fileset dir="./bldtmp">
+        <include name="PhpOnAzure.cspkg"/>
+        <include name="ServiceConfiguration.cscfg"/>
+      </fileset>
+    </copy>
+  </target>
+	
+
+	<target name="build">
+	  <echo msg="Building tool"/>
+	</target>
+</project>
+

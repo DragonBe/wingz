@@ -49,6 +49,16 @@
             --coverage-html=${project.basedir}/build/coverage"/>
     </target>
 
+    <target name="phpcs" description="Coding Standards Analysis">
+        <exec passthru="${passthru}" command="phpcs 
+            --report=checkstyle
+            --report-file=${project.basedir}/build/logs/checkstyle.xml
+            --standard=Zend
+            --ignore=library/Zend,library/ZendX,tests,docs,scripts
+            --extensions=php
+            ${project.basedir}"/>
+    </target>
+
     <target name="phpcpd" description="Copy/Paste detection">
         <phpcpd>
             <fileset refid="php-files"/>
@@ -91,6 +101,7 @@
     <target name="build" description="Start analyzing our application">
         <phingCall target="clean"/>
         <phingCall target="phpdoc"/>
+        <phingCall target="phpcs"/>
         <phingCall target="phpunit"/>
         <phingCall target="phpcpd"/>
         <phingCall target="phpmd"/>
