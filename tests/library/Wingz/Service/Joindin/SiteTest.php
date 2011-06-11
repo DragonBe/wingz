@@ -61,8 +61,8 @@ EOL;
         try {
             $status = $this->_joindin->site()->getStatus();
         } catch (Exception $e) {
-            Zend_Debug::dump($e);
+//            Zend_Debug::dump($e);
         }
-        Zend_Debug::dump($status);
+//        Zend_Debug::dump($status);
     }
 }

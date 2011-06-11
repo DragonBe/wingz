@@ -70,7 +70,6 @@ class Oauth_IdenticaController extends Zend_Controller_Action
             $this->_session->identica_access_token = serialize($accessToken);
         } else {
             $requestToken = $consumer->getRequestToken();
-//            Zend_Debug::dump($requestToken);die;
             $this->_session->identica_request_token = serialize($requestToken);
             $consumer->redirect();
         }*/
