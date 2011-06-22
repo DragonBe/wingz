@@ -32,6 +32,12 @@
         <mkdir dir="${project.basedir}/build/pdepend"/>
     </target>
 
+	<target name="phplint" description="Syntax checking of code">
+	    <phplint haltonfailure="true">
+			<fileset refid="php-files" />
+		</phplint>
+	</target>
+
     <target name="phpdoc" description="Generate API documentation">
         <phpdoc
             title="${project.name} API Documentation"
@@ -92,21 +98,22 @@
 
     <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
         <exec passthru="${passthru}" command="phpcb
-            --ignore library/Zend,library/ZendX,tests,docs
+            --ignore build,library/Zend,library/ZendX,tests,docs
             --log ${project.basedir}/build/logs
             --source ${project.basedir}
             --output ${project.basedir}/build/code-browser"/>
     </target>
 
     <target name="build" description="Start analyzing our application">
-        <phingCall target="clean"/>
-        <phingCall target="phpdoc"/>
-        <phingCall target="phpcs"/>
-        <phingCall target="phpunit"/>
-        <phingCall target="phpcpd"/>
-        <phingCall target="phpmd"/>
-        <phingCall target="pdepend"/>
-        <phingCall target="phploc"/>
-        <phingCall target="phpcb"/>
+        <phingCall target="clean" />
+		<phingCall target="phplint" />
+        <phingCall target="phpdoc" />
+        <phingCall target="phpcs" />
+        <phingCall target="phpunit" />
+        <phingCall target="phpcpd" />
+        <phingCall target="phpmd" />
+        <phingCall target="pdepend" />
+        <phingCall target="phploc" />
+        <phingCall target="phpcb" />
     </target>
 </project>
