@@ -16,8 +16,7 @@
  * 
  * The base class for interacting with the joindin api.
  * 
- * @package		Wingz_Service
- * @subpackage	Wingz_Service_Joindin
+ * @package		Wingz_Service_Joindin
  * @link		http://joind.in/api
  */
 class Wingz_Service_Joindin
@@ -132,9 +131,6 @@ class Wingz_Service_Joindin
      */
     public function getUsername()
     {
-        if (null === $this->_username) {
-            throw new Wingz_Service_Joindin_Exception('Username is not set');
-        }
         return $this->_username;
     }
     /**

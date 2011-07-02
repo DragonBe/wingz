@@ -1,5 +1,26 @@
 <?php
-class Wingz_Service_Joindin_User extends Wingz_Service_Joindin_Abstract
+/**
+ * Wingz: Write PHP, deploy anywhere
+ * 
+ * Wingz is an example application that uses a fully working Zend Framework
+ * application that can run on Linux w/ Apache, Microsoft Windows w/ IIS and
+ * on Microsoft Windows Azure w/ IIS.
+ * 
+ * @license CreativeCommons-Attribution-ShareAlike
+ * @link http://creativecommons.org/licenses/by-sa/3.0/
+ * @category Wingz
+ */
+
+/**
+ * Wingz_Service_Joindin_User
+ * 
+ * Joindin service component for usage with the user
+ * 
+ * @package Wingz_Service
+ * @subpackage Wingz_Service_Joindin
+ * @link http://joind.in/api
+ */
+class Wingz_Service_Joindin_User extends Wingz_Service_Joindin_Abstract 
 {
     const JOINDIN_API_END = '/user';
     /**
@@ -27,18 +48,27 @@ class Wingz_Service_Joindin_User extends Wingz_Service_Joindin_Abstract
      */
     public function getJoindin()
     {
-        if (null === $this->_joindin || !$this->_joindin instanceof Wingz_Service_Joindin) {
+        if (null === $this->_joindin 
+            || !$this->_joindin instanceof Wingz_Service_Joindin) {
             throw new Wingz_Service_Joindin_Exception('Joindin instance not set yet');
         }
         return $this->_joindin;
     }
+    /**
+     * Gets the detail for a specific user
+     * 
+     * @return string
+     * @throws Wingz_Service_Joindin_Exception
+     */
     public function getDetail()
     {
         if (null === $this->getJoindin()->getUsername()) {
-            throw new Wingz_Service_Joindin_Exception('Required username missing');
+            throw new Wingz_Service_Joindin_Exception(
+            'Required username missing');
         }
         if (null === $this->getJoindin()->getPassword()) {
-            throw new Wingz_Service_Joindin_Exception('Required password missing');
+            throw new Wingz_Service_Joindin_Exception(
+            'Required password missing');
         }
         $detail = $this->getJoindin()
                        ->getMessage()

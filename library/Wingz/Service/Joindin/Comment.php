@@ -1,5 +1,25 @@
 <?php
-class Wingz_Service_Joindin_Comment extends Wingz_Service_Joindin_Abstract
+/**
+ * Wingz: Write PHP, deploy anywhere
+ * 
+ * Wingz is an example application that uses a fully working Zend Framework
+ * application that can run on Linux w/ Apache, Microsoft Windows w/ IIS and
+ * on Microsoft Windows Azure w/ IIS.
+ * 
+ * @license CreativeCommons-Attribution-ShareAlike
+ * @link http://creativecommons.org/licenses/by-sa/3.0/
+ * @category Wingz
+ */
+
+/**
+ * Wingz_Service_Joindin_Comment
+ * 
+ * Joindin service component for usage with the comments
+ * 
+ * @package Wingz_Service_Joindin
+ * @link http://joind.in/api
+ */
+class Wingz_Service_Joindin_Comment extends Wingz_Service_Joindin_Abstract 
 {
     const JOINDIN_API_END = '/comment';
     /**
