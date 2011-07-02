@@ -16,7 +16,8 @@
  * 
  * Joindin service component for usage with the events
  * 
- * @package Wingz_Service_Joindin
+ * @package Wingz_Service
+ * @subpackage Wingz_Service_Joindin
  * @link http://joind.in/api
  */
 class Wingz_Service_Joindin_Event extends Wingz_Service_Joindin_Abstract

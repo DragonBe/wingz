@@ -16,7 +16,8 @@
  * 
  * Abstract class for every endpoint of Joindin API
  * 
- * @package Wingz_Service_Joindin
+ * @package Wingz_Service
+ * @subpackage Wingz_Service_Joindin
  * @link http://joind.in/api
  * @abstract
  */

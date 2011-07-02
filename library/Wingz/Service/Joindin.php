@@ -16,7 +16,8 @@
  * 
  * The base class for interacting with the joindin api.
  * 
- * @package		Wingz_Service_Joindin
+ * @package		Wingz_Service
+ * @subpackage Wingz_Service_Joindin
  * @link		http://joind.in/api
  */
 class Wingz_Service_Joindin
