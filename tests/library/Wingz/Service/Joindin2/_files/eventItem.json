@@ -1,0 +1,13 @@
+[{
+    "event_id":"1",
+    "name":"Test event number 1",
+    "start_date":"2011-06-30T19:30:00+02:00",
+    "end_date":"2011-06-30T23:59:59+02:00",
+    "description":"Test event number 1 description",
+    "href":"http:\/\/www.example.com\/event\/1",
+    "icon":"",
+    "uri":"http:\/\/api.joind.in\/v2\/events\/1",
+    "verbose_uri":"http:\/\/api.joind.in\/v2\/events\/1?verbose=yes",
+    "comments_link":"http:\/\/api.joind.in\/v2\/events\/1\/comments",
+    "talks_link":"http:\/\/api.joind.in\/v2\/events\/1\/talks"
+}]
