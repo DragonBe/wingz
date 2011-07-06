@@ -111,6 +111,23 @@ EOL;
         $this->assertSame($count, count($events->item));
     }
     
+    public function testGetListDisplaysAnErrorWhenFailure()
+    {
+        $response =<<<EOL
+HTTP/1.1 503 Service Unavailable
+EOL
+        ;
+        $this->_joindin->getClient()->getAdapter()->setResponse($response);
+        try {
+            $result = $this->_joindin->event()->getListing(
+                Wingz_Service_Joindin_Event::LISTING_UPCOMING);
+        } catch (Wingz_Service_Joindin_Exception $e) {
+            $this->assertEquals('Service Unavailable', $e->getMessage());
+            return;
+        }
+        $this->fail('Expected exception was not raised');
+    }
+    
     public function testJoindinGetEventDetail()
     {
         $response = <<<EOL
@@ -159,6 +176,23 @@ EOL;
             dirname(__FILE__) . '/_files/eventdetail.xml',
                 $this->_joindin->event()->getEventDetail(8));
     }
+    
+    public function testGetDetailDisplaysAnErrorWhenFailure()
+    {
+        $response =<<<EOL
+HTTP/1.1 503 Service Unavailable
+EOL
+        ;
+        $this->_joindin->getClient()->getAdapter()->setResponse($response);
+        try {
+            $result = $this->_joindin->event()->getEventDetail(8);
+        } catch (Wingz_Service_Joindin_Exception $e) {
+            $this->assertEquals('Service Unavailable', $e->getMessage());
+            return;
+        }
+        $this->fail('Expected exception was not raised');
+    }
+    
     public function testJoindinGetEventTalks()
     {
         $response = <<<EOL
@@ -217,5 +251,26 @@ EOL;
         $this->assertXmlStringEqualsXmlFile(
             dirname(__FILE__) . '/_files/eventtalks.xml',
                 $this->_joindin->event()->getTalks(672));
+    }
+    
+    public function testGetTalksDisplaysAnErrorWhenFailure()
+    {
+        $response =<<<EOL
+HTTP/1.1 503 Service Unavailable
+EOL
+        ;
+        $this->_joindin->getClient()->getAdapter()->setResponse($response);
+        try {
+            $result = $this->_joindin->event()->getTalks(123);
+        } catch (Wingz_Service_Joindin_Exception $e) {
+            $this->assertEquals('Service Unavailable', $e->getMessage());
+            return;
+        }
+        $this->fail('Expected exception was not raised');
+    }
+    
+    public function testClientCanAddAnEvent()
+    {
+        $this->markTestSkipped('Joind.in API not functional');
     }
 }
