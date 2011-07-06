@@ -27,5 +27,7 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 
+Zend_Session::$_unitTestEnabled = true;
+
 $application->bootstrap();
 
