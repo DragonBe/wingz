@@ -20,7 +20,8 @@
  * @subpackage Wingz_Service_Joindin2
  * @link http://joind.in/api/v2docs
  */
-abstract class Wingz_Service_Joindin2_Abstract
+abstract class Wingz_Service_Joindin2_Abstract 
+    implements Wingz_Service_Joindin2_Interface
 {
     /**
      * @var Wingz_Service_Joindin2 The joindin v2 base class
