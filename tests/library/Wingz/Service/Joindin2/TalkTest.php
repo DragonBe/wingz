@@ -134,6 +134,5 @@ class Wingz_Service_Joindin2_TalkTest extends PHPUnit_Framework_TestCase
                 'content' => 'talk_id'),
         );
         $this->assertTag($matcher, $result);
-        $this->markTestIncomplete('Service HTML contains a nested value');
     }
 }

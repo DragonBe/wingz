@@ -47,6 +47,31 @@ class Wingz_Service_Joindin2_EventTest extends PHPUnit_Framework_TestCase
         $result = $this->_event->getEventList();
         $this->assertSame(3, count($result));
     }
+    public function testServiceReturnsEventlistInHtml()
+    {
+        $json = file_get_contents(
+            dirname(__FILE__) . '/_files/eventList.html');
+        $response = 'HTTP/1.1 200 Ok' . PHP_EOL 
+                  . 'Content-type: text/html; Charset=UTF-8' . PHP_EOL 
+                  . PHP_EOL;
+        $response .= $json;
+        $this->_event->getJoindin()
+                    ->getClient()
+                    ->getAdapter()
+                    ->setResponse($response);
+        $this->_event->getJoindin()->setFormat(
+            Wingz_Service_Joindin2::JOINDIN_FORMAT_HTML);
+        $result = $this->_event->getEventList();
+        
+        $matcher = array (
+            'tag' => 'li',
+            'parent' => array ('tag' => 'ul'),
+            'descendant' => array (
+                'tag' => 'strong',
+                'content' => 'event_id'),
+        );
+        $this->assertTag($matcher, $result);
+    }
     public function testRetrievalOfOneEvent()
     {
         $json = file_get_contents(
@@ -77,5 +102,30 @@ class Wingz_Service_Joindin2_EventTest extends PHPUnit_Framework_TestCase
             $result['comments_link']);
         $this->assertEquals('http://api.joind.in/v2/events/1/talks',
             $result['talks_link']);
+    }
+    public function testServiceReturnsOneEventWithIdInHtml()
+    {
+        $json = file_get_contents(
+            dirname(__FILE__) . '/_files/eventItem.html');
+        $response = 'HTTP/1.1 200 Ok' . PHP_EOL 
+                  . 'Content-type: text/html; Charset=UTF-8' . PHP_EOL 
+                  . PHP_EOL;
+        $response .= $json;
+        $this->_event->getJoindin()
+                    ->getClient()
+                    ->getAdapter()
+                    ->setResponse($response);
+        $this->_event->getJoindin()->setFormat(
+            Wingz_Service_Joindin2::JOINDIN_FORMAT_HTML);
+        $result = $this->_event->getEvent(110);
+        
+        $matcher = array (
+            'tag' => 'li',
+            'parent' => array ('tag' => 'ul'),
+            'descendant' => array (
+                'tag' => 'strong',
+                'content' => 'event_id'),
+        );
+        $this->assertTag($matcher, $result);
     }
 }
