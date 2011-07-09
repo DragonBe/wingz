@@ -46,6 +46,31 @@ class Wingz_Service_Joindin2_TalkTest extends PHPUnit_Framework_TestCase
         $result = $this->_talk->getTalklist(110);
         $this->assertSame(17, count($result));
     }
+    public function testServiceReturnsListOfTalksInHtml()
+    {
+        $json = file_get_contents(
+            dirname(__FILE__) . '/_files/talkList.html');
+        $response = 'HTTP/1.1 200 Ok' . PHP_EOL 
+                  . 'Content-type: text/html; Charset=UTF-8' . PHP_EOL 
+                  . PHP_EOL;
+        $response .= $json;
+        $this->_talk->getJoindin()
+                    ->getClient()
+                    ->getAdapter()
+                    ->setResponse($response);
+        $this->_talk->getJoindin()->setFormat(
+            Wingz_Service_Joindin2::JOINDIN_FORMAT_HTML);
+        $result = $this->_talk->getTalkDetail(1240);
+        
+        $matcher = array (
+            'tag' => 'li',
+            'parent' => array ('tag' => 'ul'),
+            'descendant' => array (
+                'tag' => 'strong',
+                'content' => 'talk_id'),
+        );
+        $this->assertTag($matcher, $result);
+    }
     /**
      * @expectedException Wingz_Service_Joindin2_Exception
      * @expectedExceptionMessage Service Unavailable
@@ -84,5 +109,31 @@ class Wingz_Service_Joindin2_TalkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://api.joind.in/v2/talks/1240?verbose=yes', $result['verbose_uri']);
         $this->assertEquals('http://api.joind.in/v2/talks/1240/comments', $result['comments_link']);
         $this->assertEquals('http://api.joind.in/v2/events/110', $result['event_link']);
+    }
+    public function testServiceReturnsOneTalkWithIdInHtml()
+    {
+        $json = file_get_contents(
+            dirname(__FILE__) . '/_files/talkDetail.html');
+        $response = 'HTTP/1.1 200 Ok' . PHP_EOL 
+                  . 'Content-type: text/html; Charset=UTF-8' . PHP_EOL 
+                  . PHP_EOL;
+        $response .= $json;
+        $this->_talk->getJoindin()
+                    ->getClient()
+                    ->getAdapter()
+                    ->setResponse($response);
+        $this->_talk->getJoindin()->setFormat(
+            Wingz_Service_Joindin2::JOINDIN_FORMAT_HTML);
+        $result = $this->_talk->getTalkDetail(1240);
+        
+        $matcher = array (
+            'tag' => 'li',
+            'parent' => array ('tag' => 'ul'),
+            'descendant' => array (
+                'tag' => 'strong',
+                'content' => 'talk_id'),
+        );
+        $this->assertTag($matcher, $result);
+        $this->markTestIncomplete('Service HTML contains a nested value');
     }
 }
