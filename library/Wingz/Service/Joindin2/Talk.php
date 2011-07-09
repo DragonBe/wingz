@@ -12,30 +12,35 @@
  */
 
 /**
- * Wingz_Service_Joindin2_Event
+ * Wingz_Service_Joindin2_Talk
  * 
- * The joindin v2 API event endpoint class
+ * The joindin v2 API talk endpoint class
  * 
  * @package Wingz_Service
  * @subpackage Wingz_Service_Joindin2
  * @link http://joind.in/api/v2docs
  */
-class Wingz_Service_Joindin2_Event extends Wingz_Service_Joindin2_Abstract
+class Wingz_Service_Joindin2_Talk extends Wingz_Service_Joindin2_Abstract
 {
-    const JOINDIN_END_POINT = '/events';
+    const JOINDIN_END_POINT = '/talks';
+    const JOINDIN_EVENT_TALKS = 'talks';
     /**
-     * Retrieves a listing of all events, defaults to 21 events per request
+     * Retrieves a listing of talks given at an event, specified by its ID
+     * in either HTML format or an array
      * 
-     * @return array|string 
+     * @param int $eventId
+     * @return array|string
      * @throws Wingz_Service_Joindin2_Exception
      */
-    public function getEventList()
+    public function getTalkList($eventId)
     {
         $this->getJoindin()
              ->getClient()
-             ->setUri(sprintf('%s/%s',
+             ->setUri(sprintf('%s/%s/%d/%s',
                  Wingz_Service_Joindin2::JOINDIN_API_BASE,
-                 self::JOINDIN_END_POINT))
+                 Wingz_Service_Joindin2_Event::JOINDIN_END_POINT,
+                 $eventId,
+                 self::JOINDIN_EVENT_TALKS))
              ->setMethod(Zend_Http_Client::GET);
         $response = $this->getJoindin()->getClient()->request();
         if (!$response->isSuccessful()) {
@@ -43,27 +48,20 @@ class Wingz_Service_Joindin2_Event extends Wingz_Service_Joindin2_Abstract
                 $response->getMessage());
         }
         $content = $response->getBody();
-        if (Wingz_Service_Joindin2::JOINDIN_FORMAT_JSON 
+        if (Wingz_Service_Joindin2::JOINDIN_FORMAT_JSON
             === $this->getJoindin()->getFormat()) {
-            return json_decode($content, true);
+                return json_decode($content, true);
         }
         return $content;
     }
-    /**
-     * Retrieves the details of an event based on a given ID
-     * 
-     * @param int $eventId
-     * @return array|string
-     * @throws Wingz_Service_Joindin2_Exception
-     */
-    public function getEvent($eventId)
+    public function getTalkDetail($talkId)
     {
         $this->getJoindin()
              ->getClient()
              ->setUri(sprintf('%s/%s/%d',
                  Wingz_Service_Joindin2::JOINDIN_API_BASE,
                  self::JOINDIN_END_POINT,
-                 $eventId))
+                 $talkId))
              ->setMethod(Zend_Http_Client::GET);
         $response = $this->getJoindin()->getClient()->request();
         if (!$response->isSuccessful()) {
@@ -71,10 +69,10 @@ class Wingz_Service_Joindin2_Event extends Wingz_Service_Joindin2_Abstract
                 $response->getMessage());
         }
         $content = $response->getBody();
-        if (Wingz_Service_Joindin2::JOINDIN_FORMAT_JSON 
+        if (Wingz_Service_Joindin2::JOINDIN_FORMAT_JSON
             === $this->getJoindin()->getFormat()) {
-            $data = json_decode($content, true);
-            return array_shift($data);
+                $data = json_decode($content, true);
+                return array_shift($data);
         }
         return $content;
     }

@@ -8,8 +8,8 @@ class Wingz_Service_Joindin2_EventTest extends PHPUnit_Framework_TestCase
         $joindin = new Wingz_Service_Joindin2();
         $joindin->setFormat(Wingz_Service_Joindin2::JOINDIN_FORMAT_JSON)
                 ->setResultsPerPage(5);
-        $joindin->getClient()
-                ->setAdapter(new Zend_Http_Client_Adapter_Test());
+        $joindin->getClient()->setAdapter(
+                new Zend_Http_Client_Adapter_Test());
         $this->_event = new Wingz_Service_Joindin2_Event();
         $this->_event->setJoindin($joindin);
         parent::setUp(); 
