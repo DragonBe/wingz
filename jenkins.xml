@@ -25,7 +25,8 @@
         <delete dir="${project.basedir}/build/coverage"/>
         <delete dir="${project.basedir}/build/logs"/>
         <delete dir="${project.basedir}/build/pdepend"/>
-        <mkdir dir="${project.basedir}/build/api"/>
+        <mkdir dir="${project.basedir}/build/api/phpdoc"/>
+        <mkdir dir="${project.basedir}/build/api/docblox"/>
         <mkdir dir="${project.basedir}/build/code-browser"/>
         <mkdir dir="${project.basedir}/build/coverage"/>
         <mkdir dir="${project.basedir}/build/logs"/>
@@ -38,7 +39,7 @@
 		</phplint>
 	</target>
 
-    <target name="phpdoc" description="Generate API documentation">
+    <target name="phpdoc" description="Generate API documentation with PHPDocumentor">
         <phpdoc
             title="${project.name} API Documentation"
             target="${project.basedir}/build/api"
@@ -46,6 +47,14 @@
             quiet="true">
             <fileset refid="php-files"/>
         </phpdoc>
+    </target>
+    
+    <target name="docblox" description="Generate API documentation with DocBlox">
+        <docblox 
+            title="${project.name} API Documentation"
+            destdir="${project.basedir}/build/api/docblox">
+            <fileset refid="php-files"/>
+        </docblox>
     </target>
 
     <target name="phpunit" description="Run unit tests on codebase and generate code coverage">
